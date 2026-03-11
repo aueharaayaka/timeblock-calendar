@@ -1670,9 +1670,9 @@ function renderHours() {
     return m ? m[1] : title;
   }
 
-  // タイトルごとに「最初に設定された予定工数」を全ブロックから取得
+  // タイトルごとに「最新に設定された予定工数」を全ブロックから取得（降順で最初に見つかった値）
   const plannedByTitle = {};
-  [...blocks].sort((a,b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.startH - b.startH || a.startM - b.startM)
+  [...blocks].sort((a,b) => a.date > b.date ? -1 : a.date < b.date ? 1 : b.startH - a.startH || b.startM - a.startM)
     .forEach(b => {
       if (!(b.title in plannedByTitle) && b.plannedH != null) {
         plannedByTitle[b.title] = b.plannedH;
