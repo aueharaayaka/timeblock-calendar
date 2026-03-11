@@ -15262,6 +15262,16 @@
       "title": "エベラ　チラシ",
       "colorIdx": 0,
       "plannedH": null
+    },
+    {
+      "id": "mmlnzsnr5xtq",
+      "date": "2026-03-11",
+      "startH": 16,
+      "startM": 30,
+      "durationMin": 150,
+      "title": "クレセント　支払方法変更",
+      "colorIdx": 0,
+      "plannedH": 2.5
     }
   ],
   "tasks": [
