@@ -15283,6 +15283,13 @@
       "dueDate": "2026-03-11"
     },
     {
+      "id": "mmeebjr604f6",
+      "title": "クレセント　ヒアリングシート",
+      "plannedH": 3,
+      "colorIdx": 1,
+      "dueDate": "2026-03-13"
+    },
+    {
       "id": "mmbq413yl03i",
       "title": "クレセント　Yahoo広告",
       "plannedH": 1,
@@ -15306,13 +15313,6 @@
       "title": "クレセント　リニューアル",
       "plannedH": 5,
       "colorIdx": 0
-    },
-    {
-      "id": "mmeebjr604f6",
-      "title": "クレセント　ヒアリングシート",
-      "plannedH": 3,
-      "colorIdx": 1,
-      "dueDate": "2026-03-13"
     }
   ],
   "allDayEvents": [
