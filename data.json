@@ -15262,6 +15262,16 @@
       "title": "クレセント　支払方法変更",
       "colorIdx": 0,
       "plannedH": 2.5
+    },
+    {
+      "id": "mmlo2fv1i6l9",
+      "date": "2026-03-04",
+      "startH": 11,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "クレセント　支払方法変更",
+      "colorIdx": 0,
+      "plannedH": 3
     }
   ],
   "tasks": [
