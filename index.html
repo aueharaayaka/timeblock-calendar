@@ -160,10 +160,29 @@ header {
   font-weight: 500;
   line-height: 1.3;
   transition: box-shadow 0.1s;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
 }
 .task-item:hover { box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
 .task-item.dragging { opacity: 0.3; }
+.task-item.reorder-over { outline: 2px solid var(--accent); outline-offset: -1px; }
+.task-drag-handle {
+  flex-shrink: 0;
+  cursor: grab;
+  opacity: 0.35;
+  font-size: 10px;
+  line-height: 1.5;
+  padding-top: 1px;
+}
+.task-drag-handle:active { cursor: grabbing; }
+.task-item-body { flex: 1; min-width: 0; }
 .task-item-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.task-item-due {
+  font-size: 9px; margin-top: 1px; opacity: 0.75;
+}
+.task-item-due.overdue { color: #e11d48; opacity: 1; font-weight: 600; }
+.task-item-due.due-today { color: #d97706; opacity: 1; font-weight: 600; }
 .task-item-hours {
   font-family: 'DM Mono', monospace;
   font-size: 9px; opacity: 0.65; margin-top: 1px;
@@ -766,6 +785,10 @@ header {
       <label class="form-label">予定工数 (時間)</label>
       <input class="form-input" id="inputHours" type="number" min="0.25" step="0.25" placeholder="例: 2">
     </div>
+    <div class="form-group" id="dueDateGroup" style="display:none">
+      <label class="form-label">期限</label>
+      <input class="form-input" id="inputDueDate" type="date">
+    </div>
     <div class="form-group">
       <label class="form-label">カラー</label>
       <div class="color-row" id="colorPicker"></div>
@@ -1094,18 +1117,31 @@ function makeTaskEl(t) {
   el.className = 'task-item'; el.dataset.taskId = t.id;
   const c = COLORS[t.colorIdx % COLORS.length || 0];
   el.style.cssText = `background:${c.bg};border-left-color:${c.accent};color:${c.text};`;
-  el.innerHTML = `<div class="task-item-title">${t.title}</div><div class="task-item-hours">${t.plannedH}h予定</div>`;
 
-  // タスクからドラッグ
+  const today = isoDate(new Date());
+  let dueHtml = '';
+  if (t.dueDate) {
+    let cls = 'task-item-due';
+    if (t.dueDate < today) cls += ' overdue';
+    else if (t.dueDate === today) cls += ' due-today';
+    const label = t.dueDate === today ? '今日締切' : t.dueDate < today ? `期限切れ ${t.dueDate}` : `〆 ${t.dueDate}`;
+    dueHtml = `<div class="${cls}">${label}</div>`;
+  }
+
+  el.innerHTML = `<div class="task-drag-handle" data-handle>⠿</div><div class="task-item-body"><div class="task-item-title">${t.title}</div>${dueHtml}<div class="task-item-hours">${t.plannedH}h予定</div></div>`;
+
+  // ハンドル以外の領域からカレンダーへドラッグ
   let taskDidMove = false;
+  const body = el.querySelector('.task-item-body');
   const onTaskStart = e => {
     if (e.type === 'mousedown' && e.button !== 0) return;
     taskDidMove = false;
     startTaskDrag(t, el, e, () => { taskDidMove = true; });
   };
-  el.addEventListener('mousedown', onTaskStart);
-  el.addEventListener('touchstart', onTaskStart, { passive: false });
+  body.addEventListener('mousedown', onTaskStart);
+  body.addEventListener('touchstart', onTaskStart, { passive: false });
   el.addEventListener('click', e => {
+    if (e.target.closest('[data-handle]')) return;
     if (taskDidMove) { taskDidMove = false; return; }
     openTaskEditModal(t.id);
   });
@@ -1253,6 +1289,72 @@ function startBlockMove(b, el, e, onMoved) {
   addMoveListener(onMove);
   addUpListener(onUp);
 }
+
+// ═══════════════════════════════════════════════
+// タスクリスト並べ替えドラッグ
+// ═══════════════════════════════════════════════
+(function() {
+  let dragId = null, dragEl = null, overEl = null;
+
+  function getTaskEls() {
+    return [...document.getElementById('taskList').querySelectorAll('.task-item')];
+  }
+
+  document.getElementById('taskList').addEventListener('mousedown', startReorder);
+  document.getElementById('taskList').addEventListener('touchstart', startReorder, { passive: false });
+
+  function startReorder(e) {
+    const handle = e.target.closest('[data-handle]');
+    if (!handle) return;
+    if (e.type === 'mousedown' && e.button !== 0) return;
+    if (e.type === 'touchstart') e.preventDefault();
+    dragEl = handle.closest('.task-item');
+    dragId = dragEl.dataset.taskId;
+    dragEl.classList.add('dragging');
+    addMoveListener(onMove);
+    addUpListener(onUp);
+  }
+
+  function onMove(e) {
+    if (!dragEl) return;
+    e.preventDefault && e.preventDefault();
+    const { y } = evClient(e);
+    const els = getTaskEls().filter(el => el !== dragEl);
+    let newOver = null;
+    for (const el of els) {
+      const r = el.getBoundingClientRect();
+      if (y < r.top + r.height / 2) { newOver = el; break; }
+    }
+    if (newOver !== overEl) {
+      if (overEl) overEl.classList.remove('reorder-over');
+      overEl = newOver;
+      if (overEl) overEl.classList.add('reorder-over');
+    }
+  }
+
+  function onUp(e) {
+    if (!dragEl) return;
+    dragEl.classList.remove('dragging');
+    if (overEl) overEl.classList.remove('reorder-over');
+    removeMoveListener(onMove);
+    removeUpListener(onUp);
+
+    if (dragId) {
+      const fromIdx = tasks.findIndex(t => t.id === dragId);
+      if (fromIdx !== -1) {
+        const [item] = tasks.splice(fromIdx, 1);
+        if (overEl) {
+          const toIdx = tasks.findIndex(t => t.id === overEl.dataset.taskId);
+          tasks.splice(toIdx === -1 ? tasks.length : toIdx, 0, item);
+        } else {
+          tasks.push(item);
+        }
+        saveTasks(); renderTasks();
+      }
+    }
+    dragEl = null; dragId = null; overEl = null;
+  }
+})();
 
 // ═══════════════════════════════════════════════
 // タスク → タイムブロック ドラッグ
@@ -1408,6 +1510,7 @@ function openBlockEditModal(id) {
   document.getElementById('inputTitle').value = b.title;
   document.getElementById('inputHours').value = b.plannedH ?? '';
   document.getElementById('hoursGroup').style.display = '';
+  document.getElementById('dueDateGroup').style.display = 'none';
   applyPlannedHField(b.title, id, b.date);
   setModalActions('edit-block');
   buildColorPicker(colorIdx);
@@ -1423,6 +1526,7 @@ function openCreateModal(date, h, m, dur) {
   document.getElementById('inputTitle').value = '';
   document.getElementById('inputHours').value = (dur/60);
   document.getElementById('hoursGroup').style.display = '';
+  document.getElementById('dueDateGroup').style.display = 'none';
   // 初期状態はロックなし。タイトル入力時に同名チェック
   const inp = document.getElementById('inputHours');
   inp.readOnly = false; inp.style.color = ''; inp.title = '';
@@ -1449,7 +1553,9 @@ function openTaskEditModal(id) {
   document.getElementById('modalSub').textContent = '';
   document.getElementById('inputTitle').value = t?.title||'';
   document.getElementById('inputHours').value = t?.plannedH||'';
+  document.getElementById('inputDueDate').value = t?.dueDate||'';
   document.getElementById('hoursGroup').style.display = '';
+  document.getElementById('dueDateGroup').style.display = '';
   setModalActions(isNew ? 'create' : 'edit-task');
   buildColorPicker(colorIdx);
   openModal();
@@ -1507,11 +1613,12 @@ function saveModal() {
     }
     saveBlocks(); renderBlocks(); renderHours();
   } else if (modal.mode === 'new-task') {
-    tasks.push({ id:uid(), title, plannedH:hrs, colorIdx:modal.colorIdx });
+    const dueDate = document.getElementById('inputDueDate').value || null;
+    tasks.push({ id:uid(), title, plannedH:hrs, colorIdx:modal.colorIdx, dueDate });
     saveTasks(); renderTasks();
   } else if (modal.mode === 'edit-task') {
     const t = tasks.find(x=>x.id===modal.editId);
-    if (t) { t.title=title; t.plannedH=hrs; t.colorIdx=modal.colorIdx; }
+    if (t) { t.title=title; t.plannedH=hrs; t.colorIdx=modal.colorIdx; t.dueDate=document.getElementById('inputDueDate').value||null; }
     saveTasks(); renderTasks();
   }
   closeModal();
