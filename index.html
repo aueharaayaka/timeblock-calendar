@@ -2102,7 +2102,13 @@ document.addEventListener('DOMContentLoaded', () => {
     syncToGitHub(false);
   });
 
-  document.getElementById('ghFetchBtn').addEventListener('click', fetchFromGitHub);
+  document.getElementById('ghFetchBtn').addEventListener('click', () => {
+    ghConfig.token = document.getElementById('ghToken').value.trim();
+    ghConfig.repo  = document.getElementById('ghRepo').value.trim();
+    ghConfig.path  = document.getElementById('ghPath').value.trim() || 'data.json';
+    saveGhConfig();
+    fetchFromGitHub();
+  });
 });
 
 // ═══════════════════════════════════════════════
