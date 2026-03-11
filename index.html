@@ -1171,6 +1171,10 @@ function makeTaskEl(t) {
   el.addEventListener('click', e => {
     if (e.target.closest('[data-handle]')) return;
     if (taskDidMove) { taskDidMove = false; return; }
+    selectTask(selectedTaskEl === el ? null : el);
+  });
+  el.addEventListener('dblclick', e => {
+    if (e.target.closest('[data-handle]')) return;
     selectTask(el);
     openTaskEditModal(t.id);
   });
@@ -1227,11 +1231,13 @@ function onColDown(e) {
   col.appendChild(live);
 
   let endPx = startPx;
+  let hasDragged = false;
 
   const onMove = e2 => {
     if (e2.cancelable) e2.preventDefault();
     const { y: cy } = evClient(e2);
     endPx = snapPx(clientToTop(cy));
+    if (endPx !== startPx) hasDragged = true;
     const top = Math.min(startPx, endPx);
     const h   = Math.max(Math.abs(endPx - startPx), SNAP_PX);
     live.style.top    = `${top}px`;
@@ -1244,6 +1250,7 @@ function onColDown(e) {
     removeMoveListener(onMove);
     removeUpListener(onUp);
     live.remove();
+    if (!hasDragged) return; // クリックのみは登録しない
     const topPx = Math.min(startPx, endPx);
     const botPx = Math.max(endPx, startPx + SNAP_PX);
     const t   = pxToHM(topPx);
@@ -1400,7 +1407,7 @@ function startTaskDrag(t, taskEl, e) {
     if (!dragging) {
       if (Math.abs(cx-sx)<THRESH && Math.abs(cy-sy)<THRESH) return;
       dragging = true;
-      taskEl.classList.add('dragging');
+      selectTask(taskEl);
       const c = COLORS[t.colorIdx % COLORS.length || 0];
       clone = document.createElement('div');
       clone.className = 'block-clone';
@@ -1436,7 +1443,7 @@ function startTaskDrag(t, taskEl, e) {
   const onUp = e2 => {
     removeMoveListener(onMove);
     removeUpListener(onUp);
-    taskEl.classList.remove('dragging');
+    selectTask(null);
     if (!dragging) return;
     clone.remove();
     if (ghost) ghost.remove();
@@ -1767,12 +1774,16 @@ function renderHours() {
         const ph = plannedByTitle[b.title];
         if (ph) {
           map[key].plannedMin += ph * 60;
-          if (!map[key].details[b.title]) map[key].details[b.title] = { actualMin: 0, plannedMin: 0 };
-          map[key].details[b.title].plannedMin += ph * 60;
+          // 既存のdetailエントリのみ更新（履歴専用タイトルは追加しない）
+          if (map[key].details[b.title]) {
+            map[key].details[b.title].plannedMin += ph * 60;
+          }
         }
       }
     });
-  const items = Object.values(map).map(i => ({ ...i, titles: [...i.titles] }));
+  const items = Object.values(map)
+    .filter(i => i.actualMin > 0)
+    .map(i => ({ ...i, titles: [...i.titles] }));
   const totalActual  = items.reduce((s,i) => s + i.actualMin, 0);
 
   const wrap = document.getElementById('hoursTableWrap');
