@@ -681,12 +681,7 @@ header {
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1a2 2 0 100 4 2 2 0 000-4zM2 9c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
     当番設定
   </button>
-  <button class="import-btn" id="importIcsBtn" title="GoogleカレンダーのICSファイルを読み込む" style="margin-left:6px">
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 4V11M3 7l3-3 3 3M1 3V1.5A.5.5 0 011.5 1h9a.5.5 0 01.5.5V3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    GCal取込
-  </button>
-  <input type="file" id="icsFileInput" accept=".ics" style="display:none">
-  <button class="import-btn" id="githubSyncBtn" title="GitHub同期設定" style="margin-left:6px">
+<button class="import-btn" id="githubSyncBtn" title="GitHub同期設定" style="margin-left:6px">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.43c.85.004 1.7.115 2.5.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
     同期
   </button>
@@ -1856,84 +1851,6 @@ if (scheduleConfig.members && scheduleConfig.members.length) {
 }); // end DOMContentLoaded
 
 
-// ═══════════════════════════════════════════════
-// GCal ICS インポート
-// ═══════════════════════════════════════════════
-document.getElementById('importIcsBtn').addEventListener('click', () => {
-  document.getElementById('icsFileInput').value = '';
-  document.getElementById('icsFileInput').click();
-});
-
-document.getElementById('icsFileInput').addEventListener('change', e => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const text = ev.target.result;
-    const imported = parseICS(text);
-    if (!imported.length) { alert('イベントが見つかりませんでした'); return; }
-    // 既存のfromGcal:trueブロックを削除してから追加
-    blocks = blocks.filter(b => !b.fromGcal);
-    imported.forEach(b => blocks.push(b));
-    saveBlocks(); renderBlocks(); renderHours();
-    alert(`${imported.length}件を取り込みました`);
-  };
-  reader.readAsText(file, 'UTF-8');
-});
-
-function parseICS(text) {
-  const result = [];
-  const events = text.split('BEGIN:VEVENT').slice(1);
-  events.forEach(ev => {
-    const get = key => {
-      const m = ev.match(new RegExp(key + '[^:]*:([^\\r\\n]+)'));
-      return m ? m[1].trim() : '';
-    };
-    const summary = get('SUMMARY').replace(/\\,/g,',').replace(/\\n/g,' ');
-    const dtstart = get('DTSTART');
-    if (!dtstart || !summary) return;
-
-    // 日時パース (YYYYMMDDTHHmmss or YYYYMMDD)
-    let date, startH = 9, startM = 0, durationMin = 60;
-    if (dtstart.length >= 15) {
-      // datetime
-      const y = dtstart.slice(0,4), mo = dtstart.slice(4,6), d = dtstart.slice(6,8);
-      startH = parseInt(dtstart.slice(9,11));
-      startM = parseInt(dtstart.slice(11,13));
-      date = `${y}-${mo}-${d}`;
-      // duration or dtend
-      const dtend = get('DTEND');
-      if (dtend.length >= 15) {
-        const eh = parseInt(dtend.slice(9,11)), em = parseInt(dtend.slice(11,13));
-        durationMin = (eh * 60 + em) - (startH * 60 + startM);
-        if (durationMin <= 0) durationMin = 30;
-      }
-      // JSTオフセット補正 (Zサフィックスの場合 +9h)
-      if (dtstart.endsWith('Z')) {
-        let total = startH * 60 + startM + 540;
-        if (total >= 1440) {
-          const dt = new Date(date); dt.setDate(dt.getDate()+1);
-          date = dt.toISOString().slice(0,10);
-          total -= 1440;
-        }
-        startH = Math.floor(total/60); startM = total%60;
-      }
-    } else {
-      // all-day: skip
-      return;
-    }
-    if (durationMin < 1) durationMin = 30;
-    result.push({
-      id: 'gcal_' + Math.random().toString(36).slice(2),
-      date, startH, startM, durationMin,
-      title: summary,
-      colorIdx: 0,
-      plannedH: null,
-      fromGcal: true
-    });
-  });
-  return result;
-}
 
 // ═══════════════════════════════════════════════
 // ナビゲーション
