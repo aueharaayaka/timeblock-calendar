@@ -167,6 +167,11 @@ header {
 .task-item:hover { box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
 .task-item.dragging { opacity: 0.3; }
 .task-item.reorder-over { outline: 2px solid var(--accent); outline-offset: -1px; }
+.task-item.selected {
+  border-left: none !important;
+  filter: brightness(0.87);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
 .task-drag-handle {
   flex-shrink: 0;
   cursor: grab;
@@ -280,11 +285,14 @@ header {
   border-radius: 5px; padding: 4px 7px;
   cursor: grab; overflow: hidden; z-index: 5;
   user-select: none;
-  box-shadow: none !important;
-  filter: none !important;
 }
 .time-block:hover { opacity: 0.85; }
-.time-block.selected { outline: 2px solid #FB7185; outline-offset: 1px; z-index: 6; }
+.time-block.selected {
+  border-left: none !important;
+  filter: brightness(0.87) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.18) !important;
+  z-index: 6;
+}
 .time-block.is-creating { opacity: 0.8; cursor: crosshair; pointer-events: none; }
 .time-block.is-dragging { opacity: 0.2; pointer-events: none; }
 
@@ -300,6 +308,11 @@ header {
   position: absolute; bottom: 0; left: 0; right: 0; height: 7px;
   cursor: ns-resize;
   border-radius: 0 0 5px 5px;
+}
+.resize-handle-top {
+  position: absolute; top: 0; left: 0; right: 0; height: 7px;
+  cursor: ns-resize;
+  border-radius: 5px 5px 0 0;
 }
 
 /* インポートボタン */
@@ -1034,6 +1047,13 @@ function renderBlocks() {
 }
 
 let selectedBlockId = null;
+let selectedTaskEl = null;
+
+function selectTask(el) {
+  if (selectedTaskEl) selectedTaskEl.classList.remove('selected');
+  selectedTaskEl = el;
+  if (el) el.classList.add('selected');
+}
 
 function selectBlock(id) {
   // 以前の選択を解除
@@ -1053,8 +1073,10 @@ function makeBlockEl(b) {
 
   let didMove = false;
 
+  const isResizeHandle = e => e.target.classList.contains('resize-handle') || e.target.classList.contains('resize-handle-top');
+
   const onBlockStart = e => {
-    if (e.target.classList.contains('resize-handle')) return;
+    if (isResizeHandle(e)) return;
     if (e.type === 'mousedown' && e.button !== 0) return;
     e.stopPropagation();
     didMove = false;
@@ -1064,12 +1086,12 @@ function makeBlockEl(b) {
   el.addEventListener('touchstart', onBlockStart, { passive: false });
 
   el.addEventListener('click', e => {
-    if (e.target.classList.contains('resize-handle')) return;
+    if (isResizeHandle(e)) return;
     if (didMove) { didMove = false; return; }
     selectBlock(selectedBlockId === b.id ? null : b.id);
   });
   el.addEventListener('dblclick', e => {
-    if (e.target.classList.contains('resize-handle')) return;
+    if (isResizeHandle(e)) return;
     e.stopPropagation();
     openBlockEditModal(b.id);
   });
@@ -1079,6 +1101,12 @@ function makeBlockEl(b) {
   };
   el.querySelector('.resize-handle').addEventListener('mousedown', onResizeStart);
   el.querySelector('.resize-handle').addEventListener('touchstart', onResizeStart, { passive: false });
+
+  const onTopResizeStart = e => {
+    e.stopPropagation(); startTopResize(b, el, e);
+  };
+  el.querySelector('.resize-handle-top').addEventListener('mousedown', onTopResizeStart);
+  el.querySelector('.resize-handle-top').addEventListener('touchstart', onTopResizeStart, { passive: false });
   return el;
 }
 
@@ -1087,7 +1115,7 @@ function applyBlockStyle(el, b) {
   const actualH  = fmtHours(b.durationMin);
   const plannedH = b.plannedH != null ? ` / ${fmtHours(b.plannedH * 60)}予定` : '';
   el.style.cssText = `top:${hmToPx(b.startH,b.startM)+2}px;height:${Math.max(14,(b.durationMin/60)*HOUR_H-4)}px;background:${c.bg};border:none;border-left:3px solid ${c.accent};color:${c.text};`;
-  el.innerHTML = `<div class="block-title">${b.title||'—'}</div><div class="block-meta">${fmtTime(b.startH,b.startM)} · ${actualH}実績${plannedH}</div><div class="resize-handle"></div>`;
+  el.innerHTML = `<div class="resize-handle-top"></div><div class="block-title">${b.title||'—'}</div><div class="block-meta">${fmtTime(b.startH,b.startM)} · ${actualH}実績${plannedH}</div><div class="resize-handle"></div>`;
 }
 
 // ═══════════════════════════════════════════════
@@ -1107,7 +1135,7 @@ function renderHoursSidebar() {
     const el = document.createElement('div');
     el.className = 'task-item';
     el.style.cssText = `background:${c.bg};border-left-color:${c.accent};color:${c.text};cursor:default;`;
-    el.innerHTML = `<div class="task-item-title">${t.title}</div><div class="task-item-hours">${t.plannedH}h予定</div>`;
+    el.innerHTML = `<div class="task-item-body"><div class="task-item-title">${t.title}</div><div class="task-item-hours">${t.plannedH}h予定</div></div>`;
     list.appendChild(el);
   });
 }
@@ -1143,6 +1171,7 @@ function makeTaskEl(t) {
   el.addEventListener('click', e => {
     if (e.target.closest('[data-handle]')) return;
     if (taskDidMove) { taskDidMove = false; return; }
+    selectTask(el);
     openTaskEditModal(t.id);
   });
   return el;
@@ -1460,6 +1489,36 @@ function startResize(b, el, e) {
   addUpListener(onUp);
 }
 
+function startTopResize(b, el, e) {
+  if (e.cancelable) e.preventDefault();
+  const { y: startY } = evClient(e);
+  const startTopPx = parseFloat(el.style.top); // hmToPx(startH,startM)+2
+  const fixedBottomPx = startTopPx + el.offsetHeight;
+  const onMove = e2 => {
+    if (e2.cancelable) e2.preventDefault();
+    const { y: cy } = evClient(e2);
+    const dy = cy - startY;
+    // snap to grid (strip 2px offset, snap, re-add)
+    const snappedGridTop = snapPx((startTopPx - 2) + dy);
+    const newTopPx = Math.min(snappedGridTop + 2, fixedBottomPx - SNAP_PX);
+    const newHeightPx = fixedBottomPx - newTopPx;
+    el.style.top    = `${newTopPx}px`;
+    el.style.height = `${newHeightPx}px`;
+    const { h, m } = pxToHM(newTopPx - 2);
+    b.startH = h; b.startM = m;
+    b.durationMin = Math.round(newHeightPx / HOUR_H * 60);
+    const plannedH = b.plannedH != null ? ` / ${fmtHours(b.plannedH * 60)}予定` : '';
+    el.querySelector('.block-meta').textContent = `${fmtTime(b.startH, b.startM)} · ${fmtHours(b.durationMin)}実績${plannedH}`;
+  };
+  const onUp = () => {
+    removeMoveListener(onMove);
+    removeUpListener(onUp);
+    saveBlocks(); renderHours();
+  };
+  addMoveListener(onMove);
+  addUpListener(onUp);
+}
+
 // ═══════════════════════════════════════════════
 // モーダル（ブロック作成）
 // ═══════════════════════════════════════════════
@@ -1590,6 +1649,7 @@ function openModal() {
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('open');
   modal = { mode:null, editId:null, pending:null, colorIdx:0 };
+  selectTask(null);
 }
 
 function saveModal() {
