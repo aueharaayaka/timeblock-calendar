@@ -15276,6 +15276,13 @@
   ],
   "tasks": [
     {
+      "id": "mmbq60ofojfi",
+      "title": "クレセント　支払方法変更",
+      "plannedH": 3,
+      "colorIdx": 1,
+      "dueDate": "2026-03-11"
+    },
+    {
       "id": "mmbq413yl03i",
       "title": "クレセント　Yahoo広告",
       "plannedH": 1,
@@ -15293,13 +15300,6 @@
       "title": "クレセント　リキャプチャ",
       "plannedH": 3,
       "colorIdx": 0
-    },
-    {
-      "id": "mmbq60ofojfi",
-      "title": "クレセント　支払方法変更",
-      "plannedH": 3,
-      "colorIdx": 1,
-      "dueDate": "2026-03-11"
     },
     {
       "id": "mmedp6qa7sex",
