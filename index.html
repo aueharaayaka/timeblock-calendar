@@ -2076,32 +2076,34 @@ function scheduleAutoSync() {
   autoSyncTimer = setTimeout(() => { autoSyncTimer = null; syncToGitHub(true); }, 3000);
 }
 
-// GitHub Sync モーダルのイベント
-document.getElementById('githubSyncBtn').addEventListener('click', () => {
-  document.getElementById('ghToken').value = ghConfig.token || '';
-  document.getElementById('ghRepo').value  = ghConfig.repo  || '';
-  document.getElementById('ghPath').value  = ghConfig.path  || 'data.json';
-  document.getElementById('ghStatus').innerHTML = '';
-  document.getElementById('githubSyncModal').classList.add('open');
-});
+// GitHub Sync モーダルのイベント（モーダルHTMLはscriptより後に書かれているためDOMContentLoaded内で登録）
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('githubSyncBtn').addEventListener('click', () => {
+    document.getElementById('ghToken').value = ghConfig.token || '';
+    document.getElementById('ghRepo').value  = ghConfig.repo  || '';
+    document.getElementById('ghPath').value  = ghConfig.path  || 'data.json';
+    document.getElementById('ghStatus').innerHTML = '';
+    document.getElementById('githubSyncModal').classList.add('open');
+  });
 
-document.getElementById('ghCancelBtn').addEventListener('click', () => {
-  document.getElementById('githubSyncModal').classList.remove('open');
-});
+  document.getElementById('ghCancelBtn').addEventListener('click', () => {
+    document.getElementById('githubSyncModal').classList.remove('open');
+  });
 
-document.getElementById('githubSyncModal').addEventListener('click', e => {
-  if (e.target === e.currentTarget) document.getElementById('githubSyncModal').classList.remove('open');
-});
+  document.getElementById('githubSyncModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) document.getElementById('githubSyncModal').classList.remove('open');
+  });
 
-document.getElementById('ghSaveBtn').addEventListener('click', () => {
-  ghConfig.token = document.getElementById('ghToken').value.trim();
-  ghConfig.repo  = document.getElementById('ghRepo').value.trim();
-  ghConfig.path  = document.getElementById('ghPath').value.trim() || 'data.json';
-  saveGhConfig();
-  syncToGitHub(false);
-});
+  document.getElementById('ghSaveBtn').addEventListener('click', () => {
+    ghConfig.token = document.getElementById('ghToken').value.trim();
+    ghConfig.repo  = document.getElementById('ghRepo').value.trim();
+    ghConfig.path  = document.getElementById('ghPath').value.trim() || 'data.json';
+    saveGhConfig();
+    syncToGitHub(false);
+  });
 
-document.getElementById('ghFetchBtn').addEventListener('click', fetchFromGitHub);
+  document.getElementById('ghFetchBtn').addEventListener('click', fetchFromGitHub);
+});
 
 // ═══════════════════════════════════════════════
 // 初期化
