@@ -15218,7 +15218,7 @@
       "date": "2026-03-11",
       "startH": 14,
       "startM": 0,
-      "durationMin": 60,
+      "durationMin": 30,
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 1
@@ -15266,8 +15266,8 @@
     {
       "id": "mmlncn6l2bio",
       "date": "2026-03-11",
-      "startH": 15,
-      "startM": 0,
+      "startH": 14,
+      "startM": 30,
       "durationMin": 30,
       "title": "エベラ　チラシ",
       "colorIdx": 0,
