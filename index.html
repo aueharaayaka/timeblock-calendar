@@ -1680,7 +1680,8 @@ function renderHours() {
     });
 
   const map = {};
-  const titleDateSeen = new Set(); // 期間内で「タイトル+日付」ごとにplannedHを加算済み
+
+  // 第1パス: 期間内ブロックで実績・タイトル収集
   [...blocks]
     .filter(b => b.date >= from && b.date <= to)
     .sort((a,b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.startH - b.startH)
@@ -1688,21 +1689,27 @@ function renderHours() {
       const key = projectKey(b.title);
       if (!map[key]) map[key] = { key, colorIdx: b.colorIdx||0, actualMin: 0, plannedMin: 0, titles: new Set(), details: {} };
       map[key].actualMin += b.durationMin;
-      // 予定工数: 同タイトルが日付をまたいで出現するたびにプラス（日付ごとに1回）
+      map[key].titles.add(b.title);
+      if (!map[key].details[b.title]) map[key].details[b.title] = { actualMin: 0, plannedMin: 0 };
+      map[key].details[b.title].actualMin += b.durationMin;
+    });
+
+  // 第2パス: 全期間ブロックから期間内タイトルの予定工数を週跨ぎで累計
+  const titleDateSeen = new Set();
+  [...blocks]
+    .sort((a,b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.startH - b.startH)
+    .forEach(b => {
+      const key = projectKey(b.title);
+      if (!map[key]) return; // 期間内に出現しないタイトルはスキップ
       const tdKey = b.title + '\n' + b.date;
       if (!titleDateSeen.has(tdKey)) {
         titleDateSeen.add(tdKey);
         const ph = plannedByTitle[b.title];
-        if (ph) map[key].plannedMin += ph * 60;
-      }
-      map[key].titles.add(b.title);
-      if (!map[key].details[b.title]) map[key].details[b.title] = { actualMin: 0, plannedMin: 0 };
-      map[key].details[b.title].actualMin += b.durationMin;
-      // 内訳の予定工数も同日初回のみ加算
-      if (!titleDateSeen.has(tdKey + '_detail')) {
-        titleDateSeen.add(tdKey + '_detail');
-        const ph = plannedByTitle[b.title];
-        if (ph) map[key].details[b.title].plannedMin += ph * 60;
+        if (ph) {
+          map[key].plannedMin += ph * 60;
+          if (!map[key].details[b.title]) map[key].details[b.title] = { actualMin: 0, plannedMin: 0 };
+          map[key].details[b.title].plannedMin += ph * 60;
+        }
       }
     });
   const items = Object.values(map).map(i => ({ ...i, titles: [...i.titles] }));
