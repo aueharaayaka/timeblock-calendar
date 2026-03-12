@@ -165,22 +165,12 @@ header {
   gap: 4px;
 }
 .task-item:hover { box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-.task-item.dragging { opacity: 0.3; }
-.task-item.reorder-over { outline: 2px solid var(--accent); outline-offset: -1px; }
 .task-item.selected {
   border-left: none !important;
   filter: brightness(0.87);
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  cursor: grabbing;
 }
-.task-drag-handle {
-  flex-shrink: 0;
-  cursor: grab;
-  opacity: 0.35;
-  font-size: 10px;
-  line-height: 1.5;
-  padding-top: 1px;
-}
-.task-drag-handle:active { cursor: grabbing; }
 .task-item-body { flex: 1; min-width: 0; }
 .task-item-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .task-item-due {
@@ -1156,25 +1146,21 @@ function makeTaskEl(t) {
     dueHtml = `<div class="${cls}">${label}</div>`;
   }
 
-  el.innerHTML = `<div class="task-drag-handle" data-handle>⠿</div><div class="task-item-body"><div class="task-item-title">${t.title}</div>${dueHtml}<div class="task-item-hours">${t.plannedH}h予定</div></div>`;
+  el.innerHTML = `<div class="task-item-body"><div class="task-item-title">${t.title}</div>${dueHtml}<div class="task-item-hours">${t.plannedH}h予定</div></div>`;
 
-  // ハンドル以外の領域からカレンダーへドラッグ
   let taskDidMove = false;
-  const body = el.querySelector('.task-item-body');
   const onTaskStart = e => {
     if (e.type === 'mousedown' && e.button !== 0) return;
     taskDidMove = false;
-    startTaskDrag(t, el, e, () => { taskDidMove = true; });
+    startUnifiedTaskDrag(t, el, e, () => { taskDidMove = true; });
   };
-  body.addEventListener('mousedown', onTaskStart);
-  body.addEventListener('touchstart', onTaskStart, { passive: false });
+  el.addEventListener('mousedown', onTaskStart);
+  el.addEventListener('touchstart', onTaskStart, { passive: false });
   el.addEventListener('click', e => {
-    if (e.target.closest('[data-handle]')) return;
     if (taskDidMove) { taskDidMove = false; return; }
     selectTask(selectedTaskEl === el ? null : el);
   });
   el.addEventListener('dblclick', e => {
-    if (e.target.closest('[data-handle]')) return;
     selectTask(el);
     openTaskEditModal(t.id);
   });
@@ -1327,79 +1313,15 @@ function startBlockMove(b, el, e, onMoved) {
 }
 
 // ═══════════════════════════════════════════════
-// タスクリスト並べ替えドラッグ
+// タスクドラッグ（リスト並べ替え＋カレンダー配置を統合）
 // ═══════════════════════════════════════════════
-(function() {
-  let dragId = null, dragEl = null, overEl = null;
-
-  function getTaskEls() {
-    return [...document.getElementById('taskList').querySelectorAll('.task-item')];
-  }
-
-  document.getElementById('taskList').addEventListener('mousedown', startReorder);
-  document.getElementById('taskList').addEventListener('touchstart', startReorder, { passive: false });
-
-  function startReorder(e) {
-    const handle = e.target.closest('[data-handle]');
-    if (!handle) return;
-    if (e.type === 'mousedown' && e.button !== 0) return;
-    if (e.type === 'touchstart') e.preventDefault();
-    dragEl = handle.closest('.task-item');
-    dragId = dragEl.dataset.taskId;
-    dragEl.classList.add('dragging');
-    addMoveListener(onMove);
-    addUpListener(onUp);
-  }
-
-  function onMove(e) {
-    if (!dragEl) return;
-    e.preventDefault && e.preventDefault();
-    const { y } = evClient(e);
-    const els = getTaskEls().filter(el => el !== dragEl);
-    let newOver = null;
-    for (const el of els) {
-      const r = el.getBoundingClientRect();
-      if (y < r.top + r.height / 2) { newOver = el; break; }
-    }
-    if (newOver !== overEl) {
-      if (overEl) overEl.classList.remove('reorder-over');
-      overEl = newOver;
-      if (overEl) overEl.classList.add('reorder-over');
-    }
-  }
-
-  function onUp(e) {
-    if (!dragEl) return;
-    dragEl.classList.remove('dragging');
-    if (overEl) overEl.classList.remove('reorder-over');
-    removeMoveListener(onMove);
-    removeUpListener(onUp);
-
-    if (dragId) {
-      const fromIdx = tasks.findIndex(t => t.id === dragId);
-      if (fromIdx !== -1) {
-        const [item] = tasks.splice(fromIdx, 1);
-        if (overEl) {
-          const toIdx = tasks.findIndex(t => t.id === overEl.dataset.taskId);
-          tasks.splice(toIdx === -1 ? tasks.length : toIdx, 0, item);
-        } else {
-          tasks.push(item);
-        }
-        saveTasks(); renderTasks();
-      }
-    }
-    dragEl = null; dragId = null; overEl = null;
-  }
-})();
-
-// ═══════════════════════════════════════════════
-// タスク → タイムブロック ドラッグ
-// ═══════════════════════════════════════════════
-function startTaskDrag(t, taskEl, e) {
+function startUnifiedTaskDrag(t, taskEl, e, onMoved) {
   const THRESH = 5;
   const { x: sx, y: sy } = evClient(e);
-  let dragging = false, clone = null, ghost = null;
-  let targetCol = null;
+  let dragging = false;
+  let mode = null; // 'reorder' | 'calendar'
+  let clone = null, calGhost = null, targetCalCol = null;
+  const taskList = document.getElementById('taskList');
 
   const onMove = e2 => {
     if (e2.cancelable) e2.preventDefault();
@@ -1407,36 +1329,57 @@ function startTaskDrag(t, taskEl, e) {
     if (!dragging) {
       if (Math.abs(cx-sx)<THRESH && Math.abs(cy-sy)<THRESH) return;
       dragging = true;
+      onMoved();
       selectTask(taskEl);
-      const c = COLORS[t.colorIdx % COLORS.length || 0];
-      clone = document.createElement('div');
-      clone.className = 'block-clone';
-      clone.style.cssText = `width:160px;height:${SNAP_PX*4}px;background:${c.bg};border:none;border-left:3px solid ${c.accent};color:${c.text};`;
-      clone.innerHTML = `<div class="block-title">${t.title}</div><div class="block-meta">${t.plannedH}h予定</div>`;
-      document.body.appendChild(clone);
     }
 
-    clone.style.top  = `${cy - 20}px`;
-    clone.style.left = `${cx - 10}px`;
-
-    let found = null;
+    // カレンダー列上にあるか判定
+    let overCalCol = null;
     for (const col of document.querySelectorAll('.day-col')) {
       const r = col.getBoundingClientRect();
-      if (cx >= r.left && cx < r.right) { found = col; break; }
+      if (cx >= r.left && cx < r.right) { overCalCol = col; break; }
     }
-    if (found !== targetCol) {
-      if (targetCol) { targetCol.classList.remove('drop-target'); if (ghost) ghost.remove(); ghost = null; }
-      targetCol = found;
-      if (targetCol) {
-        ghost = document.createElement('div');
-        ghost.className = 'drop-ghost';
-        ghost.style.height = `${Math.round(t.plannedH * HOUR_H)}px`;
-        targetCol.appendChild(ghost);
-        targetCol.classList.add('drop-target');
+
+    if (overCalCol) {
+      // ── カレンダー配置モード ──
+      if (mode !== 'calendar') {
+        mode = 'calendar';
+        if (!clone) {
+          const c = COLORS[t.colorIdx % COLORS.length || 0];
+          clone = document.createElement('div');
+          clone.className = 'block-clone';
+          clone.style.cssText = `width:160px;height:${SNAP_PX*4}px;background:${c.bg};border:none;border-left:3px solid ${c.accent};color:${c.text};`;
+          clone.innerHTML = `<div class="block-title">${t.title}</div><div class="block-meta">${t.plannedH}h予定</div>`;
+          document.body.appendChild(clone);
+        }
       }
-    }
-    if (ghost && targetCol) {
-      ghost.style.top = `${snapPx(clientToTop(cy))}px`;
+      clone.style.top  = `${cy - 20}px`;
+      clone.style.left = `${cx - 10}px`;
+      if (overCalCol !== targetCalCol) {
+        if (calGhost) calGhost.remove();
+        targetCalCol = overCalCol;
+        calGhost = document.createElement('div');
+        calGhost.className = 'drop-ghost';
+        calGhost.style.height = `${Math.round(t.plannedH * HOUR_H)}px`;
+        targetCalCol.appendChild(calGhost);
+      }
+      if (calGhost) calGhost.style.top = `${snapPx(clientToTop(cy))}px`;
+    } else {
+      // ── リスト並べ替えモード（リアルタイムDOM移動）──
+      if (mode === 'calendar') {
+        if (clone) { clone.remove(); clone = null; }
+        if (calGhost) { calGhost.remove(); calGhost = null; }
+        targetCalCol = null;
+      }
+      mode = 'reorder';
+      const els = [...taskList.querySelectorAll('.task-item')].filter(el => el !== taskEl);
+      let insertBefore = null;
+      for (const el of els) {
+        const r = el.getBoundingClientRect();
+        if (cy < r.top + r.height / 2) { insertBefore = el; break; }
+      }
+      if (insertBefore) taskList.insertBefore(taskEl, insertBefore);
+      else taskList.appendChild(taskEl);
     }
   };
 
@@ -1445,25 +1388,25 @@ function startTaskDrag(t, taskEl, e) {
     removeUpListener(onUp);
     selectTask(null);
     if (!dragging) return;
-    clone.remove();
-    if (ghost) ghost.remove();
-    if (targetCol) {
-      targetCol.classList.remove('drop-target');
+    if (clone) clone.remove();
+    if (calGhost) calGhost.remove();
+    if (mode === 'calendar' && targetCalCol) {
       const { y: uy } = evClient(e2);
-      const topPx = snapPx(clientToTop(uy));
-      const tm = pxToHM(topPx);
-      const dur = Math.round(t.plannedH * 60);
-      const newBlock = {
-        id: uid(),
-        date: targetCol.dataset.date,
+      const tm = pxToHM(snapPx(clientToTop(uy)));
+      const isFirst = !blocks.some(b => b.title === t.title && b.date === targetCalCol.dataset.date && b.plannedH != null);
+      blocks.push({
+        id: uid(), date: targetCalCol.dataset.date,
         startH: tm.h, startM: tm.m,
-        durationMin: dur,
-        title: t.title,
-        colorIdx: t.colorIdx || 0,
-        plannedH: t.plannedH,
-      };
-      blocks.push(newBlock);
+        durationMin: Math.round(t.plannedH * 60),
+        title: t.title, colorIdx: t.colorIdx || 0,
+        plannedH: isFirst ? t.plannedH : null,
+      });
       saveBlocks(); renderBlocks(); renderHours();
+    } else if (mode === 'reorder') {
+      // DOMの順序に合わせてtasks配列を同期
+      const orderedIds = [...taskList.querySelectorAll('.task-item')].map(el => el.dataset.taskId);
+      tasks.sort((a, b) => orderedIds.indexOf(a.id) - orderedIds.indexOf(b.id));
+      saveTasks();
     }
   };
 
@@ -2063,13 +2006,20 @@ document.getElementById('addTaskBtn').onclick = () => openTaskEditModal(null);
 document.getElementById('modalClose').onclick = closeModal;
 document.getElementById('modalOverlay').addEventListener('click', e => { /* 外側クリックでは閉じない */ });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { selectBlock(null); }
-  if ((e.key === 'Delete' || e.key === 'Backspace') && selectedBlockId) {
+  if (e.key === 'Escape') { selectBlock(null); selectTask(null); }
+  if (e.key === 'Delete' || e.key === 'Backspace') {
     const tag = document.activeElement.tagName;
     if (tag === 'INPUT' || tag === 'TEXTAREA') return;
-    blocks = blocks.filter(b => b.id !== selectedBlockId);
-    selectedBlockId = null;
-    saveBlocks(); renderBlocks(); renderHours();
+    if (selectedBlockId) {
+      blocks = blocks.filter(b => b.id !== selectedBlockId);
+      selectedBlockId = null;
+      saveBlocks(); renderBlocks(); renderHours();
+    } else if (selectedTaskEl) {
+      const taskId = selectedTaskEl.dataset.taskId;
+      tasks = tasks.filter(t => t.id !== taskId);
+      selectedTaskEl = null;
+      saveTasks(); renderTasks();
+    }
   }
   if (e.key === 'Enter' && document.getElementById('modalOverlay').classList.contains('open')) saveModal();
 });
