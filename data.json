@@ -15342,6 +15342,16 @@
       "title": "その他　デザイン参考資料探索",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mmn64vhqtmr8",
+      "date": "2026-03-12",
+      "startH": 16,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　打ち合わせ",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
