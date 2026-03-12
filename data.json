@@ -15352,6 +15352,16 @@
       "title": "クレセント　打ち合わせ",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mmn6a196ra0l",
+      "date": "2026-03-13",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 180,
+      "title": "クレセント　ビーコネクトSP",
+      "colorIdx": 1,
+      "plannedH": 3
     }
   ],
   "tasks": [
