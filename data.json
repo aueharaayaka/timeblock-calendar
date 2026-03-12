@@ -15372,6 +15372,16 @@
       "title": "クレセント　支払方法変更",
       "colorIdx": 1,
       "plannedH": 3
+    },
+    {
+      "id": "mmn6ajb8wek3",
+      "date": "2026-03-13",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 180,
+      "title": "クレセント　ヒアリングシート",
+      "colorIdx": 1,
+      "plannedH": 3
     }
   ],
   "tasks": [
