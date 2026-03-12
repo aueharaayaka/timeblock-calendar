@@ -15277,8 +15277,8 @@
       "id": "mmmqzz5pfimv",
       "date": "2026-03-12",
       "startH": 16,
-      "startM": 0,
-      "durationMin": 180,
+      "startM": 30,
+      "durationMin": 146,
       "title": "クレセント　支払方法変更",
       "colorIdx": 1,
       "plannedH": 3
@@ -15318,7 +15318,7 @@
       "date": "2026-03-12",
       "startH": 14,
       "startM": 30,
-      "durationMin": 30,
+      "durationMin": 60,
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 1
