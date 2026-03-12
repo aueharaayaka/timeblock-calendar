@@ -15364,6 +15364,13 @@
       "dueDate": "2026-03-19"
     },
     {
+      "id": "mmlnwrix1gp6",
+      "title": "エベラ　チラシ修正",
+      "plannedH": 3,
+      "colorIdx": 3,
+      "dueDate": null
+    },
+    {
       "id": "mmbq413yl03i",
       "title": "クレセント　Yahoo広告",
       "plannedH": 1,
@@ -15380,13 +15387,6 @@
       "title": "クレセント　リニューアル",
       "plannedH": 5,
       "colorIdx": 0
-    },
-    {
-      "id": "mmlnwrix1gp6",
-      "title": "エベラ　チラシ修正",
-      "plannedH": 3,
-      "colorIdx": 3,
-      "dueDate": null
     },
     {
       "id": "mmlnxgcplqn4",
