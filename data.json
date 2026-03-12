@@ -15362,6 +15362,16 @@
       "title": "クレセント　ビーコネクトSP",
       "colorIdx": 1,
       "plannedH": 3
+    },
+    {
+      "id": "mmn6a3vvsqak",
+      "date": "2026-03-13",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "クレセント　支払方法変更",
+      "colorIdx": 1,
+      "plannedH": 3
     }
   ],
   "tasks": [
