@@ -15308,7 +15308,7 @@
       "date": "2026-03-12",
       "startH": 12,
       "startM": 30,
-      "durationMin": 56,
+      "durationMin": 30,
       "title": "その他　デザイン資料探索",
       "colorIdx": 0,
       "plannedH": 1
@@ -15327,8 +15327,8 @@
       "id": "mmmz9t37mk0f",
       "date": "2026-03-12",
       "startH": 13,
-      "startM": 30,
-      "durationMin": 30,
+      "startM": 0,
+      "durationMin": 60,
       "title": "クレセント　バナー作成",
       "colorIdx": 0,
       "plannedH": 0.5
