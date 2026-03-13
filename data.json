@@ -15392,6 +15392,16 @@
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mmofwoyxb9oz",
+      "date": "2026-03-13",
+      "startH": 13,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　yahoo広告キャンペーン作成",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
