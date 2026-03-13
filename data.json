@@ -15376,7 +15376,7 @@
     {
       "id": "mmn6ajb8wek3",
       "date": "2026-03-13",
-      "startH": 16,
+      "startH": 15,
       "startM": 0,
       "durationMin": 30,
       "title": "クレセント　ヒアリングシート",
@@ -15406,9 +15406,9 @@
     {
       "id": "mmoi2azaq4tp",
       "date": "2026-03-13",
-      "startH": 15,
-      "startM": 0,
-      "durationMin": 180,
+      "startH": 16,
+      "startM": 30,
+      "durationMin": 146,
       "title": "クレセント　ヒアリングシート",
       "colorIdx": 1,
       "plannedH": null
