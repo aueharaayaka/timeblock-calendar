@@ -15432,6 +15432,16 @@
       "title": "ショウエイ保守　みなと",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mmop7xdzs8f5",
+      "date": "2026-03-13",
+      "startH": 17,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "レトロワグラン　入稿",
+      "colorIdx": 0,
+      "plannedH": null
     }
   ],
   "tasks": [
