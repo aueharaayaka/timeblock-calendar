@@ -15460,17 +15460,18 @@
       "dueDate": "2026-03-16"
     },
     {
+      "id": "mmonf0eg27y4",
+      "title": "ショウエイ保守　みなと",
+      "plannedH": 4,
+      "colorIdx": 1,
+      "dueDate": "2026-03-27"
+    },
+    {
       "id": "mmlnwrix1gp6",
       "title": "エベラ　チラシ修正",
       "plannedH": 3,
       "colorIdx": 3,
       "dueDate": null
-    },
-    {
-      "id": "mmedp6qa7sex",
-      "title": "クレセント　リニューアル",
-      "plannedH": 5,
-      "colorIdx": 0
     },
     {
       "id": "mmlnxgcplqn4",
@@ -15487,11 +15488,10 @@
       "dueDate": null
     },
     {
-      "id": "mmonf0eg27y4",
-      "title": "ショウエイ保守　みなと",
-      "plannedH": 4,
-      "colorIdx": 1,
-      "dueDate": "2026-03-27"
+      "id": "mmedp6qa7sex",
+      "title": "クレセント　リニューアル",
+      "plannedH": 5,
+      "colorIdx": 0
     }
   ],
   "allDayEvents": [
