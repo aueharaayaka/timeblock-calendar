@@ -15467,6 +15467,12 @@
       "dueDate": "2026-03-27"
     },
     {
+      "id": "mmedp6qa7sex",
+      "title": "クレセント　リニューアル",
+      "plannedH": 5,
+      "colorIdx": 0
+    },
+    {
       "id": "mmlnwrix1gp6",
       "title": "エベラ　チラシ修正",
       "plannedH": 3,
@@ -15486,12 +15492,6 @@
       "plannedH": 6,
       "colorIdx": 3,
       "dueDate": null
-    },
-    {
-      "id": "mmedp6qa7sex",
-      "title": "クレセント　リニューアル",
-      "plannedH": 5,
-      "colorIdx": 0
     }
   ],
   "allDayEvents": [
