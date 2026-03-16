@@ -15502,26 +15502,6 @@
       "title": "ショウエイ保守　みなと",
       "colorIdx": 0,
       "plannedH": null
-    },
-    {
-      "id": "mmsnsm9qedit",
-      "date": "2026-03-16",
-      "startH": 15,
-      "startM": 30,
-      "durationMin": 30,
-      "title": "エルムズクリエイト　サービスページデザイン",
-      "colorIdx": 0,
-      "plannedH": 3
-    },
-    {
-      "id": "mmsnt30ife8f",
-      "date": "2026-03-16",
-      "startH": 17,
-      "startM": 0,
-      "durationMin": 120,
-      "title": "エルムズクリエイト　サービスページデザイン",
-      "colorIdx": 0,
-      "plannedH": null
     }
   ],
   "tasks": [
