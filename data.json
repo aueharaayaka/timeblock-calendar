@@ -15512,6 +15512,16 @@
       "title": "打ち合わせ、Adobeプラン変更",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mmst30vky1x7",
+      "date": "2026-03-16",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 90,
+      "title": "エベラ　ウォーター画像作成",
+      "colorIdx": 2,
+      "plannedH": null
     }
   ],
   "tasks": [
