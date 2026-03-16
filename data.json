@@ -15452,6 +15452,16 @@
       "title": "クレセント　朝礼",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mmsipxh39f4s",
+      "date": "2026-04-01",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "ショウエイ保守　みなと",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
