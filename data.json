@@ -15530,11 +15530,11 @@
       "dueDate": "2026-03-16"
     },
     {
-      "id": "mmonf0eg27y4",
-      "title": "ショウエイ保守　みなと",
-      "plannedH": 4,
+      "id": "mmsi8c9xpmxl",
+      "title": "エルムズクリエイト　サービスデザイン",
+      "plannedH": 1,
       "colorIdx": 1,
-      "dueDate": "2026-03-27"
+      "dueDate": "2026-03-19"
     },
     {
       "id": "mmedp6qa7sex",
@@ -15562,13 +15562,6 @@
       "plannedH": 6,
       "colorIdx": 3,
       "dueDate": null
-    },
-    {
-      "id": "mmsi8c9xpmxl",
-      "title": "エルムズクリエイト　サービスデザイン",
-      "plannedH": 1,
-      "colorIdx": 0,
-      "dueDate": "2026-03-19"
     }
   ],
   "allDayEvents": [
