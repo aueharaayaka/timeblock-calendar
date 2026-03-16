@@ -15442,6 +15442,16 @@
       "title": "レトロワグラン　入稿",
       "colorIdx": 0,
       "plannedH": null
+    },
+    {
+      "id": "mmsidbk09kmn",
+      "date": "2026-03-16",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　朝礼",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
