@@ -1070,7 +1070,7 @@ function makeBlockEl(b) {
     if (e.type === 'mousedown' && e.button !== 0) return;
     e.stopPropagation();
     didMove = false;
-    startBlockMove(b, el, e, () => { didMove = true; });
+    startBlockMove(b, el, e, () => { didMove = true; }, e.altKey);
   };
   el.addEventListener('mousedown', onBlockStart);
   el.addEventListener('touchstart', onBlockStart, { passive: false });
@@ -1251,7 +1251,7 @@ function onColDown(e) {
 // ═══════════════════════════════════════════════
 // ブロック移動ドラッグ
 // ═══════════════════════════════════════════════
-function startBlockMove(b, el, e, onMoved) {
+function startBlockMove(b, el, e, onMoved, isAlt = false) {
   const THRESH = 5;
   const { x: sx, y: sy } = evClient(e);
   const grabOffset = clientToTop(sy) - parseFloat(el.style.top);
@@ -1264,12 +1264,12 @@ function startBlockMove(b, el, e, onMoved) {
     if (!dragging) {
       if (Math.abs(cx-sx)<THRESH && Math.abs(cy-sy)<THRESH) return;
       dragging = true; onMoved();
-      el.classList.add('is-dragging');
+      if (!isAlt) el.classList.add('is-dragging');
       const c = COLORS[b.colorIdx % COLORS.length || 0];
       clone = document.createElement('div');
       clone.className = 'block-clone';
       clone.style.cssText = `width:${el.offsetWidth}px;height:${el.offsetHeight}px;background:${c.bg};border:none;border-left:3px solid ${c.accent};color:${c.text};`;
-      clone.innerHTML = `<div class="block-title">${b.title}</div>`;
+      clone.innerHTML = `<div class="block-title">${isAlt ? '＋ ' : ''}${b.title}</div>`;
       document.body.appendChild(clone);
       ghost = document.createElement('div');
       ghost.className = 'drop-ghost'; ghost.style.height = `${el.offsetHeight}px`;
@@ -1304,7 +1304,19 @@ function startBlockMove(b, el, e, onMoved) {
     targetCol.classList.remove('drop-target');
     const { y: uy } = evClient(e2);
     const t = pxToHM(snapPx(clientToTop(uy) - grabOffset));
-    b.date = targetCol.dataset.date; b.startH = t.h; b.startM = t.m;
+    if (isAlt) {
+      // 複製: 元のブロックはそのまま、新しいブロックを追加
+      const isFirst = !blocks.some(blk => blk.title === b.title && blk.date === targetCol.dataset.date && blk.plannedH != null);
+      blocks.push({
+        id: uid(), date: targetCol.dataset.date,
+        startH: t.h, startM: t.m,
+        durationMin: b.durationMin,
+        title: b.title, colorIdx: b.colorIdx || 0,
+        plannedH: isFirst ? b.plannedH : null,
+      });
+    } else {
+      b.date = targetCol.dataset.date; b.startH = t.h; b.startM = t.m;
+    }
     saveBlocks(); renderBlocks(); renderHours();
   };
 
