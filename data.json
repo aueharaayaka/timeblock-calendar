@@ -15542,6 +15542,16 @@
       "title": "エベラ　ウォーター画像作成",
       "colorIdx": 2,
       "plannedH": 8
+    },
+    {
+      "id": "mmu43afu7pi7",
+      "date": "2026-03-17",
+      "startH": 14,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "エベラ　出荷",
+      "colorIdx": 0,
+      "plannedH": 1
     }
   ],
   "tasks": [
