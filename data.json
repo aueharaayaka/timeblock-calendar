@@ -15548,10 +15548,20 @@
       "date": "2026-03-18",
       "startH": 10,
       "startM": 0,
-      "durationMin": 180,
+      "durationMin": 240,
       "title": "エベラ　ウォーター画像作成",
       "colorIdx": 2,
       "plannedH": 8
+    },
+    {
+      "id": "mmve21dmrj4b",
+      "date": "2026-03-18",
+      "startH": 14,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "エベラ　出荷",
+      "colorIdx": 0,
+      "plannedH": 1
     }
   ],
   "tasks": [
