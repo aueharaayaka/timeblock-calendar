@@ -15562,6 +15562,16 @@
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mmvo3dw9nn33",
+      "date": "2026-03-18",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "エベラ　トライアルキットチラシ",
+      "colorIdx": 0,
+      "plannedH": 2
     }
   ],
   "tasks": [
