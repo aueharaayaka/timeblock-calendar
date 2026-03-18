@@ -15602,6 +15602,16 @@
       "title": "エベラ　ウォーター画像作成",
       "colorIdx": 2,
       "plannedH": null
+    },
+    {
+      "id": "mmvufzvuh2h1",
+      "date": "2026-03-18",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "ショウエイ保守　みなと",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
