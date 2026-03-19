@@ -15662,6 +15662,16 @@
       "title": "エベラ　ウォーター画像作成",
       "colorIdx": 2,
       "plannedH": null
+    },
+    {
+      "id": "mmx4slssqxus",
+      "date": "2026-03-19",
+      "startH": 16,
+      "startM": 30,
+      "durationMin": 60,
+      "title": "エベラ　チラシ修正",
+      "colorIdx": 3,
+      "plannedH": 3
     }
   ],
   "tasks": [
