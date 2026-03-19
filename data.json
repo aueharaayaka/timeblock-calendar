@@ -15612,6 +15612,16 @@
       "title": "ショウエイ保守　みなと",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mmwrozk09r70",
+      "date": "2026-03-19",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　支払方法調査・変更",
+      "colorIdx": 0,
+      "plannedH": 1.5
     }
   ],
   "tasks": [
