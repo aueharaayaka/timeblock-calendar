@@ -15652,6 +15652,16 @@
       "title": "エルムズクリエイト　サービスデザイン",
       "colorIdx": 1,
       "plannedH": 1
+    },
+    {
+      "id": "mmwzwukyv54h",
+      "date": "2026-03-19",
+      "startH": 16,
+      "startM": 0,
+      "durationMin": 116,
+      "title": "エベラ　ウォーター画像作成",
+      "colorIdx": 2,
+      "plannedH": null
     }
   ],
   "tasks": [
