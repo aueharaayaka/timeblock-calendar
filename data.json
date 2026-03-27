@@ -16038,10 +16038,10 @@
       "date": "2026-03-27",
       "startH": 18,
       "startM": 0,
-      "durationMin": 60,
-      "title": "クレセント　参考資料探索",
+      "durationMin": 30,
+      "title": "クレセント　タスク整理",
       "colorIdx": 0,
-      "plannedH": null
+      "plannedH": 1
     }
   ],
   "tasks": [
