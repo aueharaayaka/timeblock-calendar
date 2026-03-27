@@ -15672,15 +15672,402 @@
       "title": "クレセント　Facebookアカウント整理・作成",
       "colorIdx": 0,
       "plannedH": 1.5
+    },
+    {
+      "id": "mn2i5yail6av",
+      "date": "2026-03-23",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　朝礼",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn2i6ol2odnl",
+      "date": "2026-03-23",
+      "startH": 10,
+      "startM": 30,
+      "durationMin": 90,
+      "title": "クレセント　ビジネス作成",
+      "colorIdx": 0,
+      "plannedH": 1.5
+    },
+    {
+      "id": "mn2mq8ieaubp",
+      "date": "2026-03-23",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　糸井さんチェック",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn2n6a6ni2go",
+      "date": "2026-03-23",
+      "startH": 13,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "エベラ　ウォーター画像作成",
+      "colorIdx": 2,
+      "plannedH": 1
+    },
+    {
+      "id": "mn2pb81qp46g",
+      "date": "2026-03-23",
+      "startH": 13,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　経費精算シート入力",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn2pbmdpxwrh",
+      "date": "2026-03-23",
+      "startH": 12,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "エルムズクリエイト　修正",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn2sjde3dqnl",
+      "date": "2026-03-23",
+      "startH": 14,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "エベラ　出荷",
+      "colorIdx": 0,
+      "plannedH": 1
+    },
+    {
+      "id": "mn2t2pk533i4",
+      "date": "2026-03-23",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "ショウエイ　広告数値入力",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn2vcfpmmpc1",
+      "date": "2026-03-23",
+      "startH": 17,
+      "startM": 30,
+      "durationMin": 60,
+      "title": "クレセント　ヒアリングシート",
+      "colorIdx": 1,
+      "plannedH": 4
+    },
+    {
+      "id": "mn2vcpd6az7w",
+      "date": "2026-03-23",
+      "startH": 18,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "エルムズクリエイト　サービスデザイン",
+      "colorIdx": 1,
+      "plannedH": 1
+    },
+    {
+      "id": "mn2yykz8m5nf",
+      "date": "2026-03-23",
+      "startH": 16,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　Yahoo!広告コンバージョン",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn2zfiwyrg43",
+      "date": "2026-03-23",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　SVG書き出し",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn3xzepze83l",
+      "date": "2026-03-24",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "ショウエイ保守　おしらせ修正",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn3ywlhyl3dg",
+      "date": "2026-03-24",
+      "startH": 11,
+      "startM": 0,
+      "durationMin": 90,
+      "title": "クレセント　参考資料探索",
+      "colorIdx": 0,
+      "plannedH": 2
+    },
+    {
+      "id": "mn3ywy645fui",
+      "date": "2026-03-23",
+      "startH": 17,
+      "startM": 30,
+      "durationMin": 60,
+      "title": "ヒアリングシート",
+      "colorIdx": 1,
+      "plannedH": 4
+    },
+    {
+      "id": "mn3yxkqs1cee",
+      "date": "2026-03-24",
+      "startH": 14,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "エベラ　出荷",
+      "colorIdx": 0,
+      "plannedH": 1
+    },
+    {
+      "id": "mn42s31u5lpr",
+      "date": "2026-03-24",
+      "startH": 12,
+      "startM": 30,
+      "durationMin": 90,
+      "title": "ヒアリングシート",
+      "colorIdx": 1,
+      "plannedH": 1.5
+    },
+    {
+      "id": "mn45vr602wji",
+      "date": "2026-03-24",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "レトロワグラン　広告出稿",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn49v8v49xue",
+      "date": "2026-03-24",
+      "startH": 15,
+      "startM": 30,
+      "durationMin": 90,
+      "title": "クレセント　レトロワグランメールやりとり",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn4blijckpqy",
+      "date": "2026-03-24",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　画像切り抜き",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn4emxo7lh0y",
+      "date": "2026-03-24",
+      "startH": 18,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "レトロワグラン　バナー作成",
+      "colorIdx": 1,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn5cm28ixaen",
+      "date": "2026-03-25",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 240,
+      "title": "レトロワグラン　バナー作成",
+      "colorIdx": 1,
+      "plannedH": 4
+    },
+    {
+      "id": "mn5jor5sipqn",
+      "date": "2026-03-25",
+      "startH": 14,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "エベラ　出荷",
+      "colorIdx": 0,
+      "plannedH": 1
+    },
+    {
+      "id": "mn5tf06nk4qn",
+      "date": "2026-03-25",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "Meta　打ち合わせ・調査",
+      "colorIdx": 0,
+      "plannedH": 1
+    },
+    {
+      "id": "mn6qzyrubwsv",
+      "date": "2026-03-26",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 180,
+      "title": "エルムズクリエイト　サービスデザイン",
+      "colorIdx": 1,
+      "plannedH": 1
+    },
+    {
+      "id": "mn6xjzgp3xkv",
+      "date": "2026-03-26",
+      "startH": 13,
+      "startM": 30,
+      "durationMin": 120,
+      "title": "エベラ　出荷",
+      "colorIdx": 0,
+      "plannedH": 1.5
+    },
+    {
+      "id": "mn6xlpwo94ap",
+      "date": "2026-03-26",
+      "startH": 15,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "Meta　広告アカウント設定",
+      "colorIdx": 0,
+      "plannedH": null
+    },
+    {
+      "id": "mn6xlvklvz8y",
+      "date": "2026-03-26",
+      "startH": 17,
+      "startM": 30,
+      "durationMin": 90,
+      "title": "クレセント　参考資料探索",
+      "colorIdx": 0,
+      "plannedH": null
+    },
+    {
+      "id": "mn739oqyecvm",
+      "date": "2026-03-26",
+      "startH": 13,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "Meta　広告アカウント設定",
+      "colorIdx": 0,
+      "plannedH": 1
+    },
+    {
+      "id": "mn875cgjzjlu",
+      "date": "2026-03-27",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "Meta　問い合わせ",
+      "colorIdx": 0,
+      "plannedH": 1
+    },
+    {
+      "id": "mn87ip1s0exd",
+      "date": "2026-03-27",
+      "startH": 11,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "エルムズクリエイト　サービスデザイン",
+      "colorIdx": 1,
+      "plannedH": 3
+    },
+    {
+      "id": "mn89y6gjc66x",
+      "date": "2026-03-27",
+      "startH": 11,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "エベラ　ウォーター画像作成",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn8ap0xgfg6n",
+      "date": "2026-03-27",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "エルムズクリエイト　サービスデザイン",
+      "colorIdx": 1,
+      "plannedH": null
+    },
+    {
+      "id": "mn8c7vlrxy2v",
+      "date": "2026-03-27",
+      "startH": 12,
+      "startM": 30,
+      "durationMin": 60,
+      "title": "Meta　問い合わせ",
+      "colorIdx": 0,
+      "plannedH": null
+    },
+    {
+      "id": "mn8c93116tk5",
+      "date": "2026-03-27",
+      "startH": 13,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　タスク整理",
+      "colorIdx": 0,
+      "plannedH": 0.5
+    },
+    {
+      "id": "mn8cj7hw5x7n",
+      "date": "2026-03-27",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "エルムズクリエイト　サービスデザイン",
+      "colorIdx": 1,
+      "plannedH": null
+    },
+    {
+      "id": "mn8cjzioktax",
+      "date": "2026-03-27",
+      "startH": 14,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "エベラ　出荷",
+      "colorIdx": 0,
+      "plannedH": 1
+    },
+    {
+      "id": "mn8cncr9flwr",
+      "date": "2026-03-26",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "Meta　広告アカウント設定",
+      "colorIdx": 0,
+      "plannedH": null
     }
   ],
   "tasks": [
     {
-      "id": "mmmziidylq0z",
-      "title": "エベラ　ウォーター画像作成",
-      "plannedH": 3,
+      "id": "mn4f1bmhe9wi",
+      "title": "ショウエイ保守　四条畷アップ",
+      "plannedH": 0.5,
       "colorIdx": 2,
-      "dueDate": "2026-03-19"
+      "dueDate": "2026-04-01"
+    },
+    {
+      "id": "mn4f26e0e30y",
+      "title": "ショウエイ保守　みなとアップ",
+      "plannedH": 0.5,
+      "colorIdx": 2,
+      "dueDate": "2026-04-01"
     },
     {
       "id": "mmeebjr604f6",
