@@ -1655,6 +1655,19 @@ function saveModal() {
 
   if (modal.mode === 'create') {
     const p = modal.pending;
+    // 同じ日時に重複するブロックがないか確認
+    const newStart = p.startH * 60 + p.startM;
+    const newEnd   = newStart + p.durationMin;
+    const overlap = blocks.find(b => {
+      if (b.date !== p.date) return false;
+      const bStart = b.startH * 60 + b.startM;
+      const bEnd   = bStart + b.durationMin;
+      return newStart < bEnd && newEnd > bStart;
+    });
+    if (overlap) {
+      const overlapTime = `${String(overlap.startH).padStart(2,'0')}:${String(overlap.startM).padStart(2,'0')}`;
+      if (!confirm(`${overlapTime} の「${overlap.title}」と時間が重複しています。このまま登録しますか？`)) return;
+    }
     // 同日・同名の先行ブロックがあればplannedHはnull（合計に含めない）
     const isFirst = getFirstPlannedH(title, null, p.date) === null;
     blocks.push({ id:uid(), date:p.date, startH:p.startH, startM:p.startM, durationMin:p.durationMin, title, colorIdx:modal.colorIdx, plannedH: isFirst ? hrs : null });
