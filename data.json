@@ -16042,6 +16042,16 @@
       "title": "クレセント　参考資料探索",
       "colorIdx": 0,
       "plannedH": null
+    },
+    {
+      "id": "mn8n471eey5k",
+      "date": "2026-03-27",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　タスク整理",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
