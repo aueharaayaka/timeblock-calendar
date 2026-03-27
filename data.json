@@ -15814,6 +15814,16 @@
       "plannedH": 2
     },
     {
+      "id": "mn3ywy645fui",
+      "date": "2026-03-23",
+      "startH": 17,
+      "startM": 30,
+      "durationMin": 60,
+      "title": "ヒアリングシート",
+      "colorIdx": 1,
+      "plannedH": 4
+    },
+    {
       "id": "mn3yxkqs1cee",
       "date": "2026-03-24",
       "startH": 14,
@@ -15998,20 +16008,10 @@
       "date": "2026-03-27",
       "startH": 12,
       "startM": 30,
-      "durationMin": 60,
+      "durationMin": 30,
       "title": "Meta　問い合わせ",
       "colorIdx": 0,
       "plannedH": null
-    },
-    {
-      "id": "mn8c93116tk5",
-      "date": "2026-03-27",
-      "startH": 13,
-      "startM": 30,
-      "durationMin": 30,
-      "title": "クレセント　タスク整理",
-      "colorIdx": 0,
-      "plannedH": 0.5
     },
     {
       "id": "mn8cj7hw5x7n",
