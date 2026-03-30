@@ -16052,6 +16052,16 @@
       "title": "クレセント　タスク整理",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mnchfvcvtlwe",
+      "date": "2026-03-30",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "Meta　問い合わせ",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
