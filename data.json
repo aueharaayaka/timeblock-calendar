@@ -16092,6 +16092,16 @@
       "title": "ショウエイ保守　四条畷アップ",
       "colorIdx": 2,
       "plannedH": 0.5
+    },
+    {
+      "id": "mnclktsqwfgg",
+      "date": "2026-04-01",
+      "startH": 10,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "ショウエイ保守　みなとアップ",
+      "colorIdx": 2,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
@@ -16108,13 +16118,6 @@
       "plannedH": 0.5,
       "colorIdx": 2,
       "dueDate": "2026-04-01"
-    },
-    {
-      "id": "mmsi8c9xpmxl",
-      "title": "エルムズクリエイト　サービスデザイン",
-      "plannedH": 1,
-      "colorIdx": 1,
-      "dueDate": "2026-03-31"
     },
     {
       "id": "mmeebjr604f6",
