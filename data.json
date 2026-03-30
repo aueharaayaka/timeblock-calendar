@@ -16122,6 +16122,16 @@
       "title": "クレセント　請求書作成",
       "colorIdx": 0,
       "plannedH": null
+    },
+    {
+      "id": "mnczr1xf7xtv",
+      "date": "2026-03-30",
+      "startH": 17,
+      "startM": 30,
+      "durationMin": 90,
+      "title": "クレセント　請求月整理",
+      "colorIdx": 0,
+      "plannedH": 1.5
     }
   ],
   "tasks": [
