@@ -16062,6 +16062,16 @@
       "title": "Meta　問い合わせ",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mnchitpbzrpq",
+      "date": "2026-03-30",
+      "startH": 10,
+      "startM": 30,
+      "durationMin": 90,
+      "title": "クレセント　請求書作成",
+      "colorIdx": 0,
+      "plannedH": 1.5
     }
   ],
   "tasks": [
