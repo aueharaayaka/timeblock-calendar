@@ -16072,6 +16072,16 @@
       "title": "クレセント　請求書作成",
       "colorIdx": 0,
       "plannedH": 1.5
+    },
+    {
+      "id": "mncj78vrfke8",
+      "date": "2026-03-30",
+      "startH": 11,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　見積もり作成",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
