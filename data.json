@@ -16132,6 +16132,16 @@
       "title": "クレセント　請求月整理",
       "colorIdx": 0,
       "plannedH": 1.5
+    },
+    {
+      "id": "mndydx9jeig3",
+      "date": "2026-03-31",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "佐武塗装　封筒印刷見積作成",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
