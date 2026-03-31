@@ -16172,6 +16172,16 @@
       "title": "経費精算シート入力・領収書発行",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mneccva9mdmy",
+      "date": "2026-03-31",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "コロンビア　メニュー表",
+      "colorIdx": 0,
+      "plannedH": 2
     }
   ],
   "tasks": [
