@@ -16142,6 +16142,16 @@
       "title": "佐武塗装　封筒印刷見積作成",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mne4lpm4f9jb",
+      "date": "2026-03-31",
+      "startH": 10,
+      "startM": 30,
+      "durationMin": 180,
+      "title": "クレセント　請求書作成・請求月整理",
+      "colorIdx": 0,
+      "plannedH": 3
     }
   ],
   "tasks": [
