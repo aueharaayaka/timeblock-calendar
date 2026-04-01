@@ -16162,6 +16162,16 @@
       "title": "コロンビア　メニュー表",
       "colorIdx": 0,
       "plannedH": 2
+    },
+    {
+      "id": "mnfl2gz6beqf",
+      "date": "2026-04-01",
+      "startH": 13,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "ショウエイ保守　四条畷",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
