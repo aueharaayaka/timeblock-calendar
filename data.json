@@ -16182,6 +16182,16 @@
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mnfqcz7ntcbe",
+      "date": "2026-04-01",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "コロンビア　メニュー表作成",
+      "colorIdx": 0,
+      "plannedH": 2
     }
   ],
   "tasks": [
