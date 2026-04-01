@@ -16186,20 +16186,6 @@
   ],
   "tasks": [
     {
-      "id": "mn4f1bmhe9wi",
-      "title": "ショウエイ保守　四条畷アップ",
-      "plannedH": 0.5,
-      "colorIdx": 2,
-      "dueDate": "2026-04-01"
-    },
-    {
-      "id": "mn4f26e0e30y",
-      "title": "ショウエイ保守　みなとアップ",
-      "plannedH": 0.5,
-      "colorIdx": 2,
-      "dueDate": "2026-04-01"
-    },
-    {
       "id": "mmeebjr604f6",
       "title": "クレセント　ヒアリングシート",
       "plannedH": 4,
