@@ -16269,6 +16269,13 @@
       "plannedH": 6,
       "colorIdx": 3,
       "dueDate": null
+    },
+    {
+      "id": "mngrtici4bti",
+      "title": "竹田製函パンフレット",
+      "plannedH": 1.5,
+      "colorIdx": 0,
+      "dueDate": null
     }
   ],
   "allDayEvents": [
