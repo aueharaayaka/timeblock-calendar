@@ -16207,7 +16207,7 @@
       "id": "mngrqb31e1o0",
       "date": "2026-04-02",
       "startH": 11,
-      "startM": 0,
+      "startM": 30,
       "durationMin": 56,
       "title": "クレセント　ReWEBテンプレート　調査",
       "colorIdx": 0,
@@ -16217,8 +16217,8 @@
       "id": "mngrqxze3x9v",
       "date": "2026-04-02",
       "startH": 12,
-      "startM": 0,
-      "durationMin": 120,
+      "startM": 30,
+      "durationMin": 86,
       "title": "クレセント　参考サイト探索",
       "colorIdx": 0,
       "plannedH": 2
@@ -16232,6 +16232,16 @@
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mngru3n4ewnl",
+      "date": "2026-04-02",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 90,
+      "title": "竹田製函パンフレット",
+      "colorIdx": 0,
+      "plannedH": 1.5
     }
   ],
   "tasks": [
