@@ -16242,6 +16242,16 @@
       "title": "竹田製函パンフレット",
       "colorIdx": 0,
       "plannedH": 1.5
+    },
+    {
+      "id": "mngul33pxcg6",
+      "date": "2026-04-02",
+      "startH": 11,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　経費精算シート入力",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
