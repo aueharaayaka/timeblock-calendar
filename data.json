@@ -16252,6 +16252,16 @@
       "title": "クレセント　経費精算シート入力",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mngy4748x2ww",
+      "date": "2026-04-02",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　Google広告調査",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
