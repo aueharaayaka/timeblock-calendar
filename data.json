@@ -16202,6 +16202,16 @@
       "title": "クレセント　参考サイト探索",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mngrqb31e1o0",
+      "date": "2026-04-02",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 180,
+      "title": "クレセント　ReWEBテンプレート　調査",
+      "colorIdx": 0,
+      "plannedH": 3
     }
   ],
   "tasks": [
