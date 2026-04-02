@@ -16212,6 +16212,16 @@
       "title": "クレセント　ReWEBテンプレート　調査",
       "colorIdx": 0,
       "plannedH": 2
+    },
+    {
+      "id": "mngrqxze3x9v",
+      "date": "2026-04-02",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "クレセント　参考サイト探索",
+      "colorIdx": 0,
+      "plannedH": 2
     }
   ],
   "tasks": [
