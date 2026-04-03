@@ -16332,6 +16332,16 @@
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 2.5
+    },
+    {
+      "id": "mniilss5b1sh",
+      "date": "2026-04-03",
+      "startH": 15,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　請求書修正",
+      "colorIdx": 0,
+      "plannedH": null
     }
   ],
   "tasks": [
