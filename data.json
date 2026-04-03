@@ -16322,6 +16322,16 @@
       "title": "クレセント　糸井さんデザインチェック",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mniicclueczn",
+      "date": "2026-04-03",
+      "startH": 13,
+      "startM": 0,
+      "durationMin": 150,
+      "title": "エベラ　出荷",
+      "colorIdx": 0,
+      "plannedH": 2.5
     }
   ],
   "tasks": [
