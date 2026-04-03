@@ -16302,6 +16302,16 @@
       "title": "クレセント　請求書修正",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mniblklfl2ys",
+      "date": "2026-04-03",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　参考サイト探索",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
