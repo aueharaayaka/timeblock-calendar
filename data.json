@@ -16422,6 +16422,16 @@
       "title": "西中島グランドハイツ　広告レポート",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mnmxr7tpgmxs",
+      "date": "2026-04-06",
+      "startH": 17,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　請求月調査",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
