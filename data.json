@@ -16342,6 +16342,16 @@
       "title": "請求書　請求書修正",
       "colorIdx": 0,
       "plannedH": null
+    },
+    {
+      "id": "mnmjw0mlg30w",
+      "date": "2026-04-06",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　朝礼",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
