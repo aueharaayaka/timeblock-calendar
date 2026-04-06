@@ -16402,6 +16402,16 @@
       "title": "経費精算シート入力",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mnmuvpsv8ttu",
+      "date": "2026-04-06",
+      "startH": 13,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　請求書作成",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
