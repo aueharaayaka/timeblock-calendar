@@ -16392,6 +16392,16 @@
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mnmpopczwy76",
+      "date": "2026-04-06",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "経費精算シート入力",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
