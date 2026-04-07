@@ -16492,6 +16492,16 @@
       "title": "その他　タスク整理",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mnoaq3yrx4cu",
+      "date": "2026-04-07",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "クレセント　問い合わせ・調査",
+      "colorIdx": 0,
+      "plannedH": 2
     }
   ],
   "tasks": [
