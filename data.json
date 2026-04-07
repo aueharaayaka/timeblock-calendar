@@ -16438,10 +16438,20 @@
       "date": "2026-04-07",
       "startH": 11,
       "startM": 0,
-      "durationMin": 56,
+      "durationMin": 60,
       "title": "その他　参考サイト探索",
       "colorIdx": 0,
       "plannedH": 2
+    },
+    {
+      "id": "mno25uj7gw3s",
+      "date": "2026-04-07",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "クレセント　打ち合わせ",
+      "colorIdx": 0,
+      "plannedH": 1
     }
   ],
   "tasks": [
