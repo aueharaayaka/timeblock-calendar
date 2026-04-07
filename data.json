@@ -16432,6 +16432,16 @@
       "title": "クレセント　請求月調査",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mnnxqcskuq57",
+      "date": "2026-04-07",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "その他　参考サイト探索",
+      "colorIdx": 0,
+      "plannedH": 2
     }
   ],
   "tasks": [
