@@ -16502,6 +16502,16 @@
       "title": "クレセント　問い合わせ・調査",
       "colorIdx": 0,
       "plannedH": 2
+    },
+    {
+      "id": "mnpfh637gb9j",
+      "date": "2026-04-08",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 90,
+      "title": "ショウエイ保守　みなとおしらせ",
+      "colorIdx": 0,
+      "plannedH": 1.5
     }
   ],
   "tasks": [
