@@ -16512,6 +16512,16 @@
       "title": "ショウエイ保守　みなとおしらせ",
       "colorIdx": 0,
       "plannedH": 1.5
+    },
+    {
+      "id": "mnpfo131d5w5",
+      "date": "2026-04-08",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 180,
+      "title": "エベラ　チラシ修正",
+      "colorIdx": 3,
+      "plannedH": 3
     }
   ],
   "tasks": [
