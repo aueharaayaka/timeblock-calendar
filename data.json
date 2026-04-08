@@ -16532,6 +16532,16 @@
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mnpqrys0em86",
+      "date": "2026-04-08",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 90,
+      "title": "参考サイト探索",
+      "colorIdx": 0,
+      "plannedH": 1.5
     }
   ],
   "tasks": [
