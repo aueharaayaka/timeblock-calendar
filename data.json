@@ -16522,6 +16522,16 @@
       "title": "エベラ　キャンペーン準備",
       "colorIdx": 3,
       "plannedH": 3
+    },
+    {
+      "id": "mnpnk555fg9i",
+      "date": "2026-04-08",
+      "startH": 14,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "エベラ　出荷",
+      "colorIdx": 0,
+      "plannedH": 1
     }
   ],
   "tasks": [
