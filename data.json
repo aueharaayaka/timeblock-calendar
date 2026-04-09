@@ -16592,6 +16592,16 @@
       "title": "エベラ出荷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mnqyzkh9gun7",
+      "date": "2026-04-09",
+      "startH": 15,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "その他　タスク整理",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
