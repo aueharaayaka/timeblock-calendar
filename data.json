@@ -16552,6 +16552,16 @@
       "title": "ショウエイ保守　みなと",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mnqsfzgochjr",
+      "date": "2026-04-09",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "ダイサン　名刺データ作成",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
