@@ -16602,6 +16602,16 @@
       "title": "その他　タスク整理",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mnr2qxyk7dyw",
+      "date": "2026-04-09",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "LP企画　ロゴ案作成",
+      "colorIdx": 0,
+      "plannedH": null
     }
   ],
   "tasks": [
