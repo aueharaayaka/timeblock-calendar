@@ -16562,6 +16562,16 @@
       "title": "ダイサン　名刺データ作成",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mnqw8orhq84n",
+      "date": "2026-04-09",
+      "startH": 10,
+      "startM": 30,
+      "durationMin": 90,
+      "title": "ショウエイ保守　四条畷",
+      "colorIdx": 0,
+      "plannedH": 1.5
     }
   ],
   "tasks": [
