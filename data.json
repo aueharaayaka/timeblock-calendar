@@ -16692,6 +16692,16 @@
       "title": "竹澤ビル　名刺修正・見積もり作成",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mnseul4mqt08",
+      "date": "2026-04-10",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "LP企画　ロゴ案作成",
+      "colorIdx": 0,
+      "plannedH": null
     }
   ],
   "tasks": [
