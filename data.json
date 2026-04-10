@@ -16622,6 +16622,16 @@
       "title": "昭和建設　ロゴ・バナー作成",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mnsa7485cfp2",
+      "date": "2026-04-10",
+      "startH": 11,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　チャットアプリ作成",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
