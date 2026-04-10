@@ -16642,6 +16642,16 @@
       "title": "クレセント　打ち合わせ",
       "colorIdx": 0,
       "plannedH": null
+    },
+    {
+      "id": "mnsdbyupyhvb",
+      "date": "2026-04-10",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　タスク整理",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
