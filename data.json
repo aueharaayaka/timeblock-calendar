@@ -16712,6 +16712,16 @@
       "title": "ショウエイ保守　四条畷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mnsnv69u1vkd",
+      "date": "2026-04-10",
+      "startH": 17,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　打ち合わせ",
+      "colorIdx": 0,
+      "plannedH": null
     }
   ],
   "tasks": [
