@@ -16722,6 +16722,16 @@
       "title": "クレセント　打ち合わせ",
       "colorIdx": 0,
       "plannedH": null
+    },
+    {
+      "id": "mnwhv3cdmwyy",
+      "date": "2026-04-13",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "竹澤ビル　名刺修正",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
