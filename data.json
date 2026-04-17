@@ -16812,6 +16812,16 @@
       "title": "ショウエイ　引継ぎ",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mo2ojh62d0im",
+      "date": "2026-04-17",
+      "startH": 18,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "その他　参考サイト探索",
+      "colorIdx": 0,
+      "plannedH": 1
     }
   ],
   "tasks": [
