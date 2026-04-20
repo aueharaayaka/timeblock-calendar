@@ -16842,6 +16842,16 @@
       "title": "ショウエイスポーツクラブ　引継ぎ",
       "colorIdx": 0,
       "plannedH": 2.5
+    },
+    {
+      "id": "mo6ic4vsfc7h",
+      "date": "2026-04-20",
+      "startH": 14,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "エベラ　出荷",
+      "colorIdx": 0,
+      "plannedH": 1
     }
   ],
   "tasks": [
