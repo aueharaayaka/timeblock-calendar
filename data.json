@@ -16848,7 +16848,7 @@
       "date": "2026-04-20",
       "startH": 10,
       "startM": 30,
-      "durationMin": 90,
+      "durationMin": 120,
       "title": "エベラ　母の日画像作成",
       "colorIdx": 0,
       "plannedH": 1
@@ -16857,8 +16857,8 @@
       "id": "mo6iegjp6bid",
       "date": "2026-04-20",
       "startH": 12,
-      "startM": 0,
-      "durationMin": 116,
+      "startM": 30,
+      "durationMin": 90,
       "title": "ショウエイスポーツクラブ　引継ぎ",
       "colorIdx": 0,
       "plannedH": 1
@@ -16868,10 +16868,10 @@
       "date": "2026-04-20",
       "startH": 16,
       "startM": 0,
-      "durationMin": 180,
-      "title": "エベラ　母の日画像作成",
+      "durationMin": 150,
+      "title": "エベラ　出荷緊急対応",
       "colorIdx": 0,
-      "plannedH": null
+      "plannedH": 1
     }
   ],
   "tasks": [
