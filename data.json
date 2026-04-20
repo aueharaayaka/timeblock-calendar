@@ -16872,6 +16872,16 @@
       "title": "エベラ　出荷緊急対応",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mo6xkd5b9b34",
+      "date": "2026-04-20",
+      "startH": 17,
+      "startM": 30,
+      "durationMin": 90,
+      "title": "その他　参考サイト探索",
+      "colorIdx": 0,
+      "plannedH": 1.5
     }
   ],
   "tasks": [
