@@ -16948,7 +16948,7 @@
       "date": "2026-04-21",
       "startH": 16,
       "startM": 30,
-      "durationMin": 86,
+      "durationMin": 90,
       "title": "請求書　作成",
       "colorIdx": 0,
       "plannedH": 3
@@ -17036,6 +17036,13 @@
       "title": "西中島グランドハイツ　4月請求広告差額上乗せ",
       "plannedH": 2,
       "colorIdx": 2,
+      "dueDate": null
+    },
+    {
+      "id": "mo8b3og2x8tr",
+      "title": "LP企画　セクション追加",
+      "plannedH": 1,
+      "colorIdx": 1,
       "dueDate": null
     }
   ],
