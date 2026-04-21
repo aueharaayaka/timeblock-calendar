@@ -16942,6 +16942,16 @@
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mo87bt8lsl0g",
+      "date": "2026-04-21",
+      "startH": 16,
+      "startM": 0,
+      "durationMin": 180,
+      "title": "請求書　作成",
+      "colorIdx": 0,
+      "plannedH": 3
     }
   ],
   "tasks": [
