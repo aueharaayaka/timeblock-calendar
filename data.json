@@ -16912,6 +16912,16 @@
       "title": "クレセント　各種業者ログイン情報",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mo81vqrira9l",
+      "date": "2026-04-21",
+      "startH": 11,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "クレセント　経費精算シート入力",
+      "colorIdx": 0,
+      "plannedH": 1
     }
   ],
   "tasks": [
