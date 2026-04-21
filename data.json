@@ -16948,7 +16948,7 @@
       "date": "2026-04-21",
       "startH": 16,
       "startM": 30,
-      "durationMin": 90,
+      "durationMin": 86,
       "title": "請求書　作成",
       "colorIdx": 0,
       "plannedH": 3
@@ -16957,8 +16957,8 @@
       "id": "mo8au0effu8h",
       "date": "2026-04-21",
       "startH": 18,
-      "startM": 0,
-      "durationMin": 60,
+      "startM": 30,
+      "durationMin": 30,
       "title": "その他　参考サイト探索",
       "colorIdx": 0,
       "plannedH": null
