@@ -16922,6 +16922,16 @@
       "title": "クレセント　経費精算シート入力",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mo823opmivbg",
+      "date": "2026-04-21",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 90,
+      "title": "その他　参考サイト探索",
+      "colorIdx": 0,
+      "plannedH": 1.5
     }
   ],
   "tasks": [
