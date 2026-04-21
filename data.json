@@ -16902,6 +16902,16 @@
       "title": "経費精算",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mo7y3hqufvam",
+      "date": "2026-04-21",
+      "startH": 10,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　各種業者ログイン情報",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
