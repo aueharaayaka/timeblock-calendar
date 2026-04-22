@@ -16948,7 +16948,7 @@
       "date": "2026-04-21",
       "startH": 16,
       "startM": 30,
-      "durationMin": 86,
+      "durationMin": 90,
       "title": "請求書　作成",
       "colorIdx": 0,
       "plannedH": 3
@@ -16982,6 +16982,16 @@
       "title": "エベラ　母の日画像作成",
       "colorIdx": 0,
       "plannedH": 0.5
+    },
+    {
+      "id": "mo9bofga7neq",
+      "date": "2026-04-22",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "請求書作成",
+      "colorIdx": 0,
+      "plannedH": 2
     }
   ],
   "tasks": [
