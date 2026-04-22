@@ -17002,6 +17002,16 @@
       "title": "エベラ出荷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mo9bot8sxxpd",
+      "date": "2026-04-22",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "sの",
+      "colorIdx": 0,
+      "plannedH": 2
     }
   ],
   "tasks": [
