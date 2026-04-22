@@ -16992,6 +16992,16 @@
       "title": "請求書作成",
       "colorIdx": 0,
       "plannedH": 2
+    },
+    {
+      "id": "mo9bomvnqy2z",
+      "date": "2026-04-22",
+      "startH": 14,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "エベラ出荷",
+      "colorIdx": 0,
+      "plannedH": 1
     }
   ],
   "tasks": [
