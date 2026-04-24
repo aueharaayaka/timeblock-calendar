@@ -949,6 +949,21 @@ const JP_HOLIDAYS = new Set([
   '2030-07-15','2030-08-11','2030-08-12','2030-09-16','2030-09-22','2030-09-23',
   '2030-10-14','2030-11-03','2030-11-04','2030-11-23',
 ]);
+// 振替休日の自動計算：日曜日と重なった祝日の翌平日を振替休日として追加
+(function() {
+  const toAdd = [];
+  for (const holStr of JP_HOLIDAYS) {
+    const d = new Date(holStr + 'T00:00:00');
+    if (d.getDay() === 0) {
+      let candidate = addDays(d, 1);
+      while (JP_HOLIDAYS.has(isoDate(candidate)) || candidate.getDay() === 0) {
+        candidate = addDays(candidate, 1);
+      }
+      toAdd.push(isoDate(candidate));
+    }
+  }
+  toAdd.forEach(d => JP_HOLIDAYS.add(d));
+})();
 function isHoliday(dateStr) { return JP_HOLIDAYS.has(dateStr); }
 
 const DAY_NAMES = ['日','月','火','水','木','金','土'];
