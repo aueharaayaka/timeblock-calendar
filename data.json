@@ -17082,6 +17082,16 @@
       "title": "ReWEB　ニューマリーナライフデザイン",
       "colorIdx": 0,
       "plannedH": null
+    },
+    {
+      "id": "mocmmod3vjnw",
+      "date": "2026-04-24",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "エベラ　画像作成",
+      "colorIdx": 0,
+      "plannedH": 0.5
     }
   ],
   "tasks": [
