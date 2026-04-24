@@ -17052,6 +17052,16 @@
       "title": "エベラ　出荷",
       "colorIdx": 0,
       "plannedH": 1
+    },
+    {
+      "id": "mocaofq2m7hm",
+      "date": "2026-04-24",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "ReWEB　ニューマリーナライフデザイン",
+      "colorIdx": 0,
+      "plannedH": 1
     }
   ],
   "tasks": [
