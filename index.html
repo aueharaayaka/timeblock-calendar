@@ -504,13 +504,8 @@ header {
   padding: 40px 0; text-align: center;
   font-size: 13px; color: var(--text-muted);
 }
-.search-view {
-  flex: 1; overflow-y: auto;
-  padding: 32px 32px;
-  max-width: 760px;
-}
-.search-input-row {
-  margin-bottom: 28px;
+.search-bar {
+  margin-bottom: 20px;
 }
 .search-main-wrap {
   position: relative; display: inline-flex; align-items: center; width: 100%; max-width: 420px;
@@ -764,10 +759,7 @@ header {
   <div class="logo">TB</div>
   <div class="tabs">
     <button class="tab-btn active" data-tab="calendar">カレンダー</button>
-    <button class="tab-btn" data-tab="week" data-hours-period="week">今週</button>
-    <button class="tab-btn" data-tab="lastweek" data-hours-period="lastweek">先週</button>
-    <button class="tab-btn" data-tab="month" data-hours-period="month">今月</button>
-    <button class="tab-btn" data-tab="search">検索</button>
+    <button class="tab-btn" data-tab="hours">工数管理</button>
   </div>
   <div class="week-nav" id="weekNav">
     <div class="month-label" id="monthLabel"></div>
@@ -829,20 +821,26 @@ header {
     </div>
     <!-- 右メイン: 集計テーブル -->
     <div class="hours-main">
+      <div class="hours-controls">
+        <label>期間</label>
+        <div class="period-btns">
+          <button class="period-btn active" data-period="day">今日</button>
+          <button class="period-btn" data-period="yesterday">昨日</button>
+          <button class="period-btn" data-period="week">今週</button>
+          <button class="period-btn" data-period="lastweek">先週</button>
+          <button class="period-btn" data-period="month">今月</button>
+          <button class="period-btn" data-period="lastmonth">先月</button>
+          <button class="period-btn" data-period="search">検索</button>
+        </div>
+      </div>
+      <div class="search-bar" id="searchBar" style="display:none">
+        <div class="search-main-wrap">
+          <input type="text" class="search-main-input" id="searchMainInput" placeholder="タイトルで検索…">
+          <button class="search-main-clear" id="searchMainClear" style="display:none">✕</button>
+        </div>
+      </div>
       <div id="hoursTableWrap"></div>
     </div>
-  </div>
-</div>
-
-<div class="view" id="view-search">
-  <div class="search-view">
-    <div class="search-input-row">
-      <div class="search-main-wrap">
-        <input type="text" class="search-main-input" id="searchMainInput" placeholder="タイトルで検索…" autofocus>
-        <button class="search-main-clear" id="searchMainClear" style="display:none">✕</button>
-      </div>
-    </div>
-    <div id="searchResultWrap"></div>
   </div>
 </div>
 
@@ -919,7 +917,7 @@ let autoSyncTimer = null;
 let modal = { mode: null, editId: null, pending: null, colorIdx: 0 };
 
 // 工数管理タブ
-let hoursPeriod = 'week';
+let hoursPeriod = 'day';
 
 // ═══════════════════════════════════════════════
 // ユーティリティ
@@ -1784,9 +1782,17 @@ function renderHours() {
     from = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-01`;
     const lastDay = new Date(now.getFullYear(), now.getMonth()+1, 0);
     to = isoDate(lastDay);
+  } else if (hoursPeriod === 'lastmonth') {
+    const now = new Date();
+    const y = now.getMonth() === 0 ? now.getFullYear() - 1 : now.getFullYear();
+    const m = now.getMonth() === 0 ? 12 : now.getMonth();
+    from = `${y}-${String(m).padStart(2,'0')}-01`;
+    to = isoDate(new Date(y, m, 0));
+  } else if (hoursPeriod === 'search') {
+    renderSearch();
+    return;
   } else {
-    from = document.getElementById('dateFrom').value || today;
-    to   = document.getElementById('dateTo').value   || today;
+    from = today; to = today;
   }
 
   // 集計 — スペース（全角・半角）前の文字列をキーとして案件単位で集約
@@ -1901,11 +1907,11 @@ function renderHours() {
 }
 
 // ═══════════════════════════════════════════════
-// 検索タブ
+// 検索（工数管理内）
 // ═══════════════════════════════════════════════
 function renderSearch() {
   const q = (document.getElementById('searchMainInput').value || '').trim().toLowerCase();
-  const wrap = document.getElementById('searchResultWrap');
+  const wrap = document.getElementById('hoursTableWrap');
 
   if (!q) {
     wrap.innerHTML = '<div class="hours-empty">キーワードを入力してください</div>';
@@ -1983,19 +1989,28 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const tab = btn.dataset.tab;
-    const period = btn.dataset.hoursPeriod;
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    // 今週・先週・今月 は view-hours を共有
-    document.getElementById(period ? 'view-hours' : `view-${tab}`).classList.add('active');
+    document.getElementById(`view-${tab}`).classList.add('active');
     document.getElementById('weekNav').style.display = tab === 'calendar' ? '' : 'none';
     document.getElementById('todayBtn').style.display = tab === 'calendar' ? '' : 'none';
     document.getElementById('hint').style.display = tab === 'calendar' ? '' : 'none';
-    if (period) {
-      hoursPeriod = period;
-      renderHoursSidebar(); renderHours();
-    } else if (tab === 'search') {
-      renderSearch();
+    if (tab === 'hours') { renderHoursSidebar(); renderHours(); }
+  });
+});
+
+// 工数タブ - 期間ボタン
+document.querySelectorAll('.period-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    hoursPeriod = btn.dataset.period;
+    const isSearch = hoursPeriod === 'search';
+    document.getElementById('searchBar').style.display = isSearch ? '' : 'none';
+    if (isSearch) {
       document.getElementById('searchMainInput').focus();
+      renderSearch();
+    } else {
+      renderHours();
     }
   });
 });
