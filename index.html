@@ -525,6 +525,30 @@ header {
   color: var(--text-muted); font-size: 13px; line-height: 1; padding: 0;
 }
 .search-main-clear:hover { color: var(--text-primary); }
+.search-period-list {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.search-period-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; border-radius: 8px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.search-period-row.is-alltime {
+  background: var(--accent-light);
+}
+.search-period-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.search-period-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 20px; font-weight: 500;
+  color: var(--text-primary);
+}
+.search-period-value.is-zero {
+  font-size: 16px; color: var(--text-muted);
+}
 .hours-all-total {
   display: flex; align-items: center; justify-content: space-between;
   padding: 10px 14px; margin-top: 16px;
@@ -1910,7 +1934,8 @@ function renderHours() {
 // 検索（工数管理内）
 // ═══════════════════════════════════════════════
 function renderSearch() {
-  const q = (document.getElementById('searchMainInput').value || '').trim().toLowerCase();
+  const raw = document.getElementById('searchMainInput').value || '';
+  const q = raw.trim().toLowerCase();
   const wrap = document.getElementById('hoursTableWrap');
 
   if (!q) {
@@ -1918,67 +1943,47 @@ function renderSearch() {
     return;
   }
 
-  function projectKey(title) {
-    const m = title.match(/^([^\s　]+)/);
-    return m ? m[1] : title;
+  const now = new Date();
+  const ws  = getWeekStart(now);
+  const lws = getWeekStart(addDays(now, -7));
+  const lmy = now.getMonth() === 0 ? now.getFullYear() - 1 : now.getFullYear();
+  const lmm = now.getMonth() === 0 ? 12 : now.getMonth();
+
+  const ranges = {
+    week:      [isoDate(ws),  isoDate(addDays(ws, 6))],
+    lastweek:  [isoDate(lws), isoDate(addDays(lws, 6))],
+    month:     [`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-01`,
+                isoDate(new Date(now.getFullYear(), now.getMonth()+1, 0))],
+    lastmonth: [`${lmy}-${String(lmm).padStart(2,'0')}-01`,
+                isoDate(new Date(lmy, lmm, 0))],
+  };
+
+  function sumRange(from, to) {
+    return blocks
+      .filter(b => b.title.toLowerCase().includes(q) && (!from || b.date >= from) && (!to || b.date <= to))
+      .reduce((s, b) => s + b.durationMin, 0);
   }
 
-  const map = {};
-  blocks
-    .filter(b => b.title.toLowerCase().includes(q))
-    .sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0)
-    .forEach(b => {
-      const key = projectKey(b.title);
-      if (!map[key]) map[key] = { key, colorIdx: b.colorIdx || 0, totalMin: 0, titles: {} };
-      map[key].totalMin += b.durationMin;
-      map[key].titles[b.title] = (map[key].titles[b.title] || 0) + b.durationMin;
-    });
+  const periods = [
+    { label: '全期間',  min: sumRange(null, null), alltime: true },
+    { label: '今週',    min: sumRange(...ranges.week) },
+    { label: '先週',    min: sumRange(...ranges.lastweek) },
+    { label: '今月',    min: sumRange(...ranges.month) },
+    { label: '先月',    min: sumRange(...ranges.lastmonth) },
+  ];
 
-  const items = Object.values(map).sort((a, b) => b.totalMin - a.totalMin);
-
-  if (!items.length) {
-    wrap.innerHTML = `<div class="hours-empty">"${document.getElementById('searchMainInput').value.trim()}" に一致するデータがありません</div>`;
+  if (periods[0].min === 0) {
+    wrap.innerHTML = `<div class="hours-empty">"${raw.trim()}" に一致するデータがありません</div>`;
     return;
   }
 
-  const totalMin = items.reduce((s, i) => s + i.totalMin, 0);
-  const maxMin = items[0].totalMin;
-
-  const rows = items.map((i, idx) => {
-    const c = COLORS[i.colorIdx % COLORS.length || 0];
-    const pct = Math.min(100, (i.totalMin / maxMin * 100)).toFixed(0);
-    const subTitles = Object.keys(i.titles);
-    const canExpand = subTitles.length > 1 || subTitles[0] !== i.key;
-
-    const detailRows = canExpand ? subTitles.map(title => `<tr class="detail-row" id="srch-detail-${idx}">
-        <td></td>
-        <td style="padding-left:20px;font-size:11px;color:var(--text-muted)">${title}</td>
-        <td class="td-bar-cell"></td>
-        <td style="font-family:'DM Mono',monospace;font-size:13px;color:var(--text-muted);text-align:right">${fmtHours(i.titles[title])}</td>
-      </tr>`).join('') : '';
-
-    return `<tr>
-      <td class="td-color"><span class="td-dot" style="background:${c.accent}"></span></td>
-      <td><span style="font-weight:600">${i.key}</span></td>
-      <td class="td-bar-cell"><div class="hours-bar-bg"><div class="hours-bar-fill" style="width:${pct}%;background:${c.accent}"></div></div></td>
-      <td>${fmtHours(i.totalMin)}</td>
-    </tr>${detailRows}`;
-  }).join('');
-
-  wrap.innerHTML = `
-    <table class="hours-table">
-      <thead><tr>
-        <th class="td-color"></th>
-        <th>タスク</th>
-        <th class="td-bar-cell"></th>
-        <th>全期間</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-    <div class="hours-total-row">
-      <span class="hours-total-label">合計</span>
-      <span class="hours-total-value">${fmtHours(totalMin)}</span>
-    </div>`;
+  wrap.innerHTML = `<div class="search-period-list">${
+    periods.map(p => `
+      <div class="search-period-row${p.alltime ? ' is-alltime' : ''}">
+        <span class="search-period-label">${p.label}</span>
+        <span class="search-period-value${p.min === 0 ? ' is-zero' : ''}">${p.min > 0 ? fmtHours(p.min) : '—'}</span>
+      </div>`).join('')
+  }</div>`;
 }
 
 // ═══════════════════════════════════════════════
