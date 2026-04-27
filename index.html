@@ -504,27 +504,32 @@ header {
   padding: 40px 0; text-align: center;
   font-size: 13px; color: var(--text-muted);
 }
-.hours-search-bar {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 20px;
+.search-view {
+  flex: 1; overflow-y: auto;
+  padding: 32px 32px;
+  max-width: 760px;
 }
-.hours-search-wrap {
-  position: relative; display: flex; align-items: center;
+.search-input-row {
+  margin-bottom: 28px;
 }
-.hours-search-input {
-  font-family: 'DM Sans', sans-serif; font-size: 12px;
-  border: 1px solid var(--border); border-radius: 7px;
-  padding: 6px 28px 6px 10px; background: var(--bg); color: var(--text-primary);
-  outline: none; transition: border-color 0.15s; width: 200px;
+.search-main-wrap {
+  position: relative; display: inline-flex; align-items: center; width: 100%; max-width: 420px;
 }
-.hours-search-input:focus { border-color: var(--accent); }
-.hours-search-input::placeholder { color: var(--text-muted); }
-.hours-search-clear {
-  position: absolute; right: 8px;
+.search-main-input {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 10px 36px 10px 14px; background: var(--bg); color: var(--text-primary);
+  outline: none; transition: border-color 0.15s;
+}
+.search-main-input:focus { border-color: var(--accent); }
+.search-main-input::placeholder { color: var(--text-muted); }
+.search-main-clear {
+  position: absolute; right: 10px;
   background: none; border: none; cursor: pointer;
-  color: var(--text-muted); font-size: 12px; line-height: 1; padding: 0;
+  color: var(--text-muted); font-size: 13px; line-height: 1; padding: 0;
 }
-.hours-search-clear:hover { color: var(--text-primary); }
+.search-main-clear:hover { color: var(--text-primary); }
 .hours-all-total {
   display: flex; align-items: center; justify-content: space-between;
   padding: 10px 14px; margin-top: 16px;
@@ -759,7 +764,10 @@ header {
   <div class="logo">TB</div>
   <div class="tabs">
     <button class="tab-btn active" data-tab="calendar">カレンダー</button>
-    <button class="tab-btn" data-tab="hours">工数管理</button>
+    <button class="tab-btn" data-tab="week" data-hours-period="week">今週</button>
+    <button class="tab-btn" data-tab="lastweek" data-hours-period="lastweek">先週</button>
+    <button class="tab-btn" data-tab="month" data-hours-period="month">今月</button>
+    <button class="tab-btn" data-tab="search">検索</button>
   </div>
   <div class="week-nav" id="weekNav">
     <div class="month-label" id="monthLabel"></div>
@@ -821,30 +829,20 @@ header {
     </div>
     <!-- 右メイン: 集計テーブル -->
     <div class="hours-main">
-      <div class="hours-controls">
-        <label>期間</label>
-        <div class="period-btns">
-          <button class="period-btn active" data-period="day">今日</button>
-          <button class="period-btn" data-period="yesterday">昨日</button>
-          <button class="period-btn" data-period="week">今週</button>
-          <button class="period-btn" data-period="lastweek">先週</button>
-          <button class="period-btn" data-period="month">今月</button>
-          <button class="period-btn" data-period="custom">指定日</button>
-        </div>
-        <div class="date-input-wrap" id="dateInputWrap" style="display:none">
-          <input type="date" class="date-input" id="dateFrom"> 〜
-          <input type="date" class="date-input" id="dateTo">
-        </div>
-      </div>
-      <div class="hours-search-bar">
-        <label>検索</label>
-        <div class="hours-search-wrap">
-          <input type="text" class="hours-search-input" id="hoursSearchInput" placeholder="タイトルで絞り込み">
-          <button class="hours-search-clear" id="hoursSearchClear" style="display:none">✕</button>
-        </div>
-      </div>
       <div id="hoursTableWrap"></div>
     </div>
+  </div>
+</div>
+
+<div class="view" id="view-search">
+  <div class="search-view">
+    <div class="search-input-row">
+      <div class="search-main-wrap">
+        <input type="text" class="search-main-input" id="searchMainInput" placeholder="タイトルで検索…" autofocus>
+        <button class="search-main-clear" id="searchMainClear" style="display:none">✕</button>
+      </div>
+    </div>
+    <div id="searchResultWrap"></div>
   </div>
 </div>
 
@@ -921,8 +919,7 @@ let autoSyncTimer = null;
 let modal = { mode: null, editId: null, pending: null, colorIdx: 0 };
 
 // 工数管理タブ
-let hoursPeriod = 'day';
-let hoursSearch = '';
+let hoursPeriod = 'week';
 
 // ═══════════════════════════════════════════════
 // ユーティリティ
@@ -1843,33 +1840,15 @@ function renderHours() {
         }
       }
     });
-  const allItems = Object.values(map)
+  const items = Object.values(map)
     .filter(i => i.actualMin > 0)
     .map(i => ({ ...i, titles: [...i.titles] }));
 
-  // 検索フィルタ
-  const searchQ = hoursSearch.toLowerCase();
-  const items = searchQ
-    ? allItems.filter(i =>
-        i.key.toLowerCase().includes(searchQ) ||
-        i.titles.some(t => t.toLowerCase().includes(searchQ)))
-    : allItems;
-
   const totalActual = items.reduce((s, i) => s + i.actualMin, 0);
-
-  // 全期間合計（検索中のみ計算）
-  const allTimeMin = searchQ
-    ? blocks.filter(b => b.title.toLowerCase().includes(searchQ))
-            .reduce((s, b) => s + b.durationMin, 0)
-    : 0;
 
   const wrap = document.getElementById('hoursTableWrap');
   if (!items.length) {
-    const msg = searchQ ? `"${hoursSearch}" に一致するデータがありません` : 'この期間のデータがありません';
-    wrap.innerHTML = `<div class="hours-empty">${msg}</div>` +
-      (searchQ && allTimeMin > 0
-        ? `<div class="hours-all-total"><span class="hours-all-total-label">全期間合計（"${hoursSearch}"）</span><span class="hours-all-total-value">${fmtHours(allTimeMin)}</span></div>`
-        : '');
+    wrap.innerHTML = `<div class="hours-empty">この期間のデータがありません</div>`;
     return;
   }
 
@@ -1904,10 +1883,6 @@ function renderHours() {
     </tr>${detailRows}`;
   }).join('');
 
-  const allTotalHtml = searchQ
-    ? `<div class="hours-all-total"><span class="hours-all-total-label">全期間合計（"${hoursSearch}"）</span><span class="hours-all-total-value">${fmtHours(allTimeMin)}</span></div>`
-    : '';
-
   wrap.innerHTML = `
     <table class="hours-table">
       <thead><tr>
@@ -1922,7 +1897,82 @@ function renderHours() {
     <div class="hours-total-row">
       <span class="hours-total-label">合計実績</span>
       <span class="hours-total-value">${fmtHours(totalActual)}</span>
-    </div>${allTotalHtml}`;
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════
+// 検索タブ
+// ═══════════════════════════════════════════════
+function renderSearch() {
+  const q = (document.getElementById('searchMainInput').value || '').trim().toLowerCase();
+  const wrap = document.getElementById('searchResultWrap');
+
+  if (!q) {
+    wrap.innerHTML = '<div class="hours-empty">キーワードを入力してください</div>';
+    return;
+  }
+
+  function projectKey(title) {
+    const m = title.match(/^([^\s　]+)/);
+    return m ? m[1] : title;
+  }
+
+  const map = {};
+  blocks
+    .filter(b => b.title.toLowerCase().includes(q))
+    .sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0)
+    .forEach(b => {
+      const key = projectKey(b.title);
+      if (!map[key]) map[key] = { key, colorIdx: b.colorIdx || 0, totalMin: 0, titles: {} };
+      map[key].totalMin += b.durationMin;
+      map[key].titles[b.title] = (map[key].titles[b.title] || 0) + b.durationMin;
+    });
+
+  const items = Object.values(map).sort((a, b) => b.totalMin - a.totalMin);
+
+  if (!items.length) {
+    wrap.innerHTML = `<div class="hours-empty">"${document.getElementById('searchMainInput').value.trim()}" に一致するデータがありません</div>`;
+    return;
+  }
+
+  const totalMin = items.reduce((s, i) => s + i.totalMin, 0);
+  const maxMin = items[0].totalMin;
+
+  const rows = items.map((i, idx) => {
+    const c = COLORS[i.colorIdx % COLORS.length || 0];
+    const pct = Math.min(100, (i.totalMin / maxMin * 100)).toFixed(0);
+    const subTitles = Object.keys(i.titles);
+    const canExpand = subTitles.length > 1 || subTitles[0] !== i.key;
+
+    const detailRows = canExpand ? subTitles.map(title => `<tr class="detail-row" id="srch-detail-${idx}">
+        <td></td>
+        <td style="padding-left:20px;font-size:11px;color:var(--text-muted)">${title}</td>
+        <td class="td-bar-cell"></td>
+        <td style="font-family:'DM Mono',monospace;font-size:13px;color:var(--text-muted);text-align:right">${fmtHours(i.titles[title])}</td>
+      </tr>`).join('') : '';
+
+    return `<tr>
+      <td class="td-color"><span class="td-dot" style="background:${c.accent}"></span></td>
+      <td><span style="font-weight:600">${i.key}</span></td>
+      <td class="td-bar-cell"><div class="hours-bar-bg"><div class="hours-bar-fill" style="width:${pct}%;background:${c.accent}"></div></div></td>
+      <td>${fmtHours(i.totalMin)}</td>
+    </tr>${detailRows}`;
+  }).join('');
+
+  wrap.innerHTML = `
+    <table class="hours-table">
+      <thead><tr>
+        <th class="td-color"></th>
+        <th>タスク</th>
+        <th class="td-bar-cell"></th>
+        <th>全期間</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="hours-total-row">
+      <span class="hours-total-label">合計</span>
+      <span class="hours-total-value">${fmtHours(totalMin)}</span>
+    </div>`;
 }
 
 // ═══════════════════════════════════════════════
@@ -1933,49 +1983,32 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const tab = btn.dataset.tab;
+    const period = btn.dataset.hoursPeriod;
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.getElementById(`view-${tab}`).classList.add('active');
-    // カレンダータブのみ週ナビを表示
+    // 今週・先週・今月 は view-hours を共有
+    document.getElementById(period ? 'view-hours' : `view-${tab}`).classList.add('active');
     document.getElementById('weekNav').style.display = tab === 'calendar' ? '' : 'none';
     document.getElementById('todayBtn').style.display = tab === 'calendar' ? '' : 'none';
     document.getElementById('hint').style.display = tab === 'calendar' ? '' : 'none';
-    if (tab === 'hours') { renderHoursSidebar(); renderHours(); }
+    if (period) {
+      hoursPeriod = period;
+      renderHoursSidebar(); renderHours();
+    } else if (tab === 'search') {
+      renderSearch();
+      document.getElementById('searchMainInput').focus();
+    }
   });
 });
 
-// 工数タブ - 期間ボタン
-document.querySelectorAll('.period-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    hoursPeriod = btn.dataset.period;
-    const showDate = hoursPeriod === 'custom';
-    document.getElementById('dateInputWrap').style.display = showDate ? '' : 'none';
-    renderHours();
-  });
+document.getElementById('searchMainInput').addEventListener('input', function() {
+  document.getElementById('searchMainClear').style.display = this.value ? '' : 'none';
+  renderSearch();
 });
-
-document.getElementById('dateFrom').addEventListener('change', renderHours);
-document.getElementById('dateTo').addEventListener('change', renderHours);
-
-document.getElementById('hoursSearchInput').addEventListener('input', function() {
-  hoursSearch = this.value.trim();
-  document.getElementById('hoursSearchClear').style.display = this.value ? '' : 'none';
-  renderHours();
-});
-document.getElementById('hoursSearchClear').addEventListener('click', function() {
-  document.getElementById('hoursSearchInput').value = '';
-  hoursSearch = '';
+document.getElementById('searchMainClear').addEventListener('click', function() {
+  document.getElementById('searchMainInput').value = '';
   this.style.display = 'none';
-  renderHours();
+  renderSearch();
 });
-
-// 工数タブのデフォルト日付セット
-(function() {
-  const today = isoDate(new Date());
-  document.getElementById('dateFrom').value = today;
-  document.getElementById('dateTo').value   = today;
-})();
 
 
 // ═══════════════════════════════════════════════
