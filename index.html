@@ -504,6 +504,43 @@ header {
   padding: 40px 0; text-align: center;
   font-size: 13px; color: var(--text-muted);
 }
+.hours-search-bar {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px;
+}
+.hours-search-wrap {
+  position: relative; display: flex; align-items: center;
+}
+.hours-search-input {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  border: 1px solid var(--border); border-radius: 7px;
+  padding: 6px 28px 6px 10px; background: var(--bg); color: var(--text-primary);
+  outline: none; transition: border-color 0.15s; width: 200px;
+}
+.hours-search-input:focus { border-color: var(--accent); }
+.hours-search-input::placeholder { color: var(--text-muted); }
+.hours-search-clear {
+  position: absolute; right: 8px;
+  background: none; border: none; cursor: pointer;
+  color: var(--text-muted); font-size: 12px; line-height: 1; padding: 0;
+}
+.hours-search-clear:hover { color: var(--text-primary); }
+.hours-all-total {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; margin-top: 16px;
+  background: var(--accent-light); border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.hours-all-total-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.hours-all-total-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 20px; font-weight: 500;
+  color: var(--text-primary);
+}
 
 /* ── MOBILE ── */
 @media (max-width: 640px) {
@@ -799,6 +836,13 @@ header {
           <input type="date" class="date-input" id="dateTo">
         </div>
       </div>
+      <div class="hours-search-bar">
+        <label>検索</label>
+        <div class="hours-search-wrap">
+          <input type="text" class="hours-search-input" id="hoursSearchInput" placeholder="タイトルで絞り込み">
+          <button class="hours-search-clear" id="hoursSearchClear" style="display:none">✕</button>
+        </div>
+      </div>
       <div id="hoursTableWrap"></div>
     </div>
   </div>
@@ -878,6 +922,7 @@ let modal = { mode: null, editId: null, pending: null, colorIdx: 0 };
 
 // 工数管理タブ
 let hoursPeriod = 'day';
+let hoursSearch = '';
 
 // ═══════════════════════════════════════════════
 // ユーティリティ
@@ -1798,20 +1843,37 @@ function renderHours() {
         }
       }
     });
-  const items = Object.values(map)
+  const allItems = Object.values(map)
     .filter(i => i.actualMin > 0)
     .map(i => ({ ...i, titles: [...i.titles] }));
-  const totalActual  = items.reduce((s,i) => s + i.actualMin, 0);
+
+  // 検索フィルタ
+  const searchQ = hoursSearch.toLowerCase();
+  const items = searchQ
+    ? allItems.filter(i =>
+        i.key.toLowerCase().includes(searchQ) ||
+        i.titles.some(t => t.toLowerCase().includes(searchQ)))
+    : allItems;
+
+  const totalActual = items.reduce((s, i) => s + i.actualMin, 0);
+
+  // 全期間合計（検索中のみ計算）
+  const allTimeMin = searchQ
+    ? blocks.filter(b => b.title.toLowerCase().includes(searchQ))
+            .reduce((s, b) => s + b.durationMin, 0)
+    : 0;
 
   const wrap = document.getElementById('hoursTableWrap');
   if (!items.length) {
-    wrap.innerHTML = `<div class="hours-empty">この期間のデータがありません</div>`;
+    const msg = searchQ ? `"${hoursSearch}" に一致するデータがありません` : 'この期間のデータがありません';
+    wrap.innerHTML = `<div class="hours-empty">${msg}</div>` +
+      (searchQ && allTimeMin > 0
+        ? `<div class="hours-all-total"><span class="hours-all-total-label">全期間合計（"${hoursSearch}"）</span><span class="hours-all-total-value">${fmtHours(allTimeMin)}</span></div>`
+        : '');
     return;
   }
 
   const maxActual = Math.max(...items.map(i=>i.actualMin), 1);
-
-  const hasMultiple = items.some(i => i.titles.length > 1 || i.titles[0] !== i.key);
 
   let rows = items.map((i, idx) => {
     const c = COLORS[i.colorIdx % COLORS.length || 0];
@@ -1842,6 +1904,10 @@ function renderHours() {
     </tr>${detailRows}`;
   }).join('');
 
+  const allTotalHtml = searchQ
+    ? `<div class="hours-all-total"><span class="hours-all-total-label">全期間合計（"${hoursSearch}"）</span><span class="hours-all-total-value">${fmtHours(allTimeMin)}</span></div>`
+    : '';
+
   wrap.innerHTML = `
     <table class="hours-table">
       <thead><tr>
@@ -1856,7 +1922,7 @@ function renderHours() {
     <div class="hours-total-row">
       <span class="hours-total-label">合計実績</span>
       <span class="hours-total-value">${fmtHours(totalActual)}</span>
-    </div>`;
+    </div>${allTotalHtml}`;
 }
 
 // ═══════════════════════════════════════════════
@@ -1891,6 +1957,18 @@ document.querySelectorAll('.period-btn').forEach(btn => {
 
 document.getElementById('dateFrom').addEventListener('change', renderHours);
 document.getElementById('dateTo').addEventListener('change', renderHours);
+
+document.getElementById('hoursSearchInput').addEventListener('input', function() {
+  hoursSearch = this.value.trim();
+  document.getElementById('hoursSearchClear').style.display = this.value ? '' : 'none';
+  renderHours();
+});
+document.getElementById('hoursSearchClear').addEventListener('click', function() {
+  document.getElementById('hoursSearchInput').value = '';
+  hoursSearch = '';
+  this.style.display = 'none';
+  renderHours();
+});
 
 // 工数タブのデフォルト日付セット
 (function() {
