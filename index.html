@@ -854,8 +854,13 @@ header {
           <button class="period-btn" data-period="lastweek">先週</button>
           <button class="period-btn" data-period="month">今月</button>
           <button class="period-btn" data-period="lastmonth">先月</button>
+          <button class="period-btn" data-period="custom">期間指定</button>
           <button class="period-btn" data-period="search">検索</button>
         </div>
+      </div>
+      <div class="date-input-wrap" id="dateInputWrap" style="display:none">
+        <input type="date" class="date-input" id="dateFrom"> 〜
+        <input type="date" class="date-input" id="dateTo">
       </div>
       <div class="search-bar" id="searchBar" style="display:none">
         <div class="search-main-wrap">
@@ -1812,6 +1817,9 @@ function renderHours() {
     const m = now.getMonth() === 0 ? 12 : now.getMonth();
     from = `${y}-${String(m).padStart(2,'0')}-01`;
     to = isoDate(new Date(y, m, 0));
+  } else if (hoursPeriod === 'custom') {
+    from = document.getElementById('dateFrom').value || today;
+    to   = document.getElementById('dateTo').value   || today;
   } else if (hoursPeriod === 'search') {
     renderSearch();
     return;
@@ -2010,7 +2018,9 @@ document.querySelectorAll('.period-btn').forEach(btn => {
     btn.classList.add('active');
     hoursPeriod = btn.dataset.period;
     const isSearch = hoursPeriod === 'search';
+    const isCustom = hoursPeriod === 'custom';
     document.getElementById('searchBar').style.display = isSearch ? '' : 'none';
+    document.getElementById('dateInputWrap').style.display = isCustom ? '' : 'none';
     if (isSearch) {
       document.getElementById('searchMainInput').focus();
       renderSearch();
@@ -2019,6 +2029,9 @@ document.querySelectorAll('.period-btn').forEach(btn => {
     }
   });
 });
+
+document.getElementById('dateFrom').addEventListener('change', renderHours);
+document.getElementById('dateTo').addEventListener('change', renderHours);
 
 document.getElementById('searchMainInput').addEventListener('input', function() {
   document.getElementById('searchMainClear').style.display = this.value ? '' : 'none';
