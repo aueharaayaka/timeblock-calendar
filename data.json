@@ -17157,6 +17157,15 @@
       "durationMin": 60,
       "title": "エベラ　出荷",
       "colorIdx": 0
+    },
+    {
+      "id": "moi1ma0rdvvm",
+      "date": "2026-04-28",
+      "startH": 16,
+      "startM": 0,
+      "durationMin": 180,
+      "title": "ニューマリーナライフ　デザイン",
+      "colorIdx": 0
     }
   ],
   "tasks": [
