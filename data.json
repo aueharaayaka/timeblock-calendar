@@ -17166,6 +17166,15 @@
       "durationMin": 180,
       "title": "ニューマリーナライフ　デザイン",
       "colorIdx": 0
+    },
+    {
+      "id": "moi1un0liqfg",
+      "date": "2026-04-28",
+      "startH": 13,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　紹介文",
+      "colorIdx": 0
     }
   ],
   "tasks": [
