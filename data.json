@@ -17199,7 +17199,7 @@
       "date": "2026-04-30",
       "startH": 10,
       "startM": 0,
-      "durationMin": 210,
+      "durationMin": 240,
       "title": "ニューマリーナライフ　デザイン",
       "colorIdx": 0
     },
@@ -17210,6 +17210,15 @@
       "startM": 0,
       "durationMin": 60,
       "title": "エベラ　出荷",
+      "colorIdx": 0
+    },
+    {
+      "id": "mol36eutflz4",
+      "date": "2026-04-30",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "ニューマリーナライフ　デザイン",
       "colorIdx": 0
     }
   ],
