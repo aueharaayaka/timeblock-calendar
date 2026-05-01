@@ -17265,6 +17265,15 @@
       "durationMin": 60,
       "title": "エベラ　出荷",
       "colorIdx": 0
+    },
+    {
+      "id": "momf6uk2wu1a",
+      "date": "2026-05-01",
+      "startH": 16,
+      "startM": 0,
+      "durationMin": 180,
+      "title": "LP企画　セクション追加デザイン",
+      "colorIdx": 0
     }
   ],
   "tasks": [
