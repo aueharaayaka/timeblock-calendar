@@ -17271,7 +17271,7 @@
       "date": "2026-05-01",
       "startH": 18,
       "startM": 0,
-      "durationMin": 56,
+      "durationMin": 60,
       "title": "LP企画　セクション追加デザイン",
       "colorIdx": 0
     },
@@ -17349,13 +17349,6 @@
       "title": "西中島グランドハイツ　広告レポート作成",
       "plannedH": 0.5,
       "colorIdx": 0,
-      "dueDate": null
-    },
-    {
-      "id": "mnnzq0j9zqje",
-      "title": "西中島グランドハイツ　4月請求広告差額上乗せ",
-      "plannedH": 2,
-      "colorIdx": 2,
       "dueDate": null
     },
     {
