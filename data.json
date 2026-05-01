@@ -17247,6 +17247,15 @@
       "durationMin": 60,
       "title": "クレセント　経費精算シート入力",
       "colorIdx": 0
+    },
+    {
+      "id": "momdivmikz2r",
+      "date": "2026-05-01",
+      "startH": 12,
+      "startM": 30,
+      "durationMin": 120,
+      "title": "その他　参考サイト探索",
+      "colorIdx": 0
     }
   ],
   "tasks": [
