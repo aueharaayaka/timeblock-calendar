@@ -17346,6 +17346,15 @@
       "durationMin": 30,
       "title": "ラクショー　ワイヤー",
       "colorIdx": 0
+    },
+    {
+      "id": "mow8kkuuvq1n",
+      "date": "2026-05-08",
+      "startH": 10,
+      "startM": 30,
+      "durationMin": 60,
+      "title": "トキワシステム　画像処理",
+      "colorIdx": 0
     }
   ],
   "tasks": [
