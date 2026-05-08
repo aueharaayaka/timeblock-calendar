@@ -17298,16 +17298,16 @@
       "date": "2026-05-07",
       "startH": 10,
       "startM": 0,
-      "durationMin": 60,
+      "durationMin": 30,
       "title": "ラクショー　ワイヤー",
       "colorIdx": 0
     },
     {
       "id": "mouv6mdw6sk5",
       "date": "2026-05-07",
-      "startH": 11,
-      "startM": 0,
-      "durationMin": 30,
+      "startH": 10,
+      "startM": 30,
+      "durationMin": 60,
       "title": "ハマのトウダイ　写真差し替え",
       "colorIdx": 0
     },
@@ -17335,6 +17335,15 @@
       "startH": 16,
       "startM": 30,
       "durationMin": 150,
+      "title": "ラクショー　ワイヤー",
+      "colorIdx": 0
+    },
+    {
+      "id": "mow8jks766py",
+      "date": "2026-05-08",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
       "title": "ラクショー　ワイヤー",
       "colorIdx": 0
     }
