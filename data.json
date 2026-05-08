@@ -17364,6 +17364,15 @@
       "durationMin": 30,
       "title": "クレセント　画像処理",
       "colorIdx": 0
+    },
+    {
+      "id": "mow9oqkfgunk",
+      "date": "2026-05-08",
+      "startH": 11,
+      "startM": 30,
+      "durationMin": 90,
+      "title": "その他　参考サイト探索",
+      "colorIdx": 0
     }
   ],
   "tasks": [
