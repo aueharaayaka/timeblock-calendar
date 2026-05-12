@@ -17474,20 +17474,11 @@
       "colorIdx": 0
     },
     {
-      "id": "mp23m9bwlv4j",
-      "date": "2026-05-12",
-      "startH": 15,
-      "startM": 0,
-      "durationMin": 30,
-      "title": "その他　参考サイト探索",
-      "colorIdx": 0
-    },
-    {
       "id": "mp23mcjjuwse",
       "date": "2026-05-12",
       "startH": 16,
-      "startM": 30,
-      "durationMin": 150,
+      "startM": 0,
+      "durationMin": 176,
       "title": "クレセントWEB　リニューアルデザイン",
       "colorIdx": 3
     }
