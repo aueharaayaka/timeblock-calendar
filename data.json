@@ -17490,6 +17490,15 @@
       "durationMin": 30,
       "title": "その他　参考サイト探索",
       "colorIdx": 0
+    },
+    {
+      "id": "mp3g2hg1sabs",
+      "date": "2026-05-13",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 180,
+      "title": "クレセントWEB　リニューアルデザイン",
+      "colorIdx": 3
     }
   ],
   "tasks": [
