@@ -17494,9 +17494,9 @@
     {
       "id": "mp3g2hg1sabs",
       "date": "2026-05-13",
-      "startH": 11,
-      "startM": 0,
-      "durationMin": 180,
+      "startH": 12,
+      "startM": 30,
+      "durationMin": 86,
       "title": "クレセントWEB　リニューアルデザイン",
       "colorIdx": 3
     },
@@ -17505,7 +17505,7 @@
       "date": "2026-05-13",
       "startH": 10,
       "startM": 0,
-      "durationMin": 60,
+      "durationMin": 120,
       "title": "その他　参考サイト探索",
       "colorIdx": 0
     }
