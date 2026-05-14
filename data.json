@@ -17591,31 +17591,13 @@
       "colorIdx": 0
     },
     {
-      "id": "mp4zc6yk9ge7",
-      "date": "2026-05-14",
-      "startH": 18,
-      "startM": 0,
-      "durationMin": 60,
-      "title": "クレセントWEB　リニューアルデザイン",
-      "colorIdx": 3
-    },
-    {
       "id": "mp54xmm0n057",
       "date": "2026-05-14",
       "startH": 16,
       "startM": 0,
-      "durationMin": 60,
+      "durationMin": 180,
       "title": "竹田製函　パンフレット修正",
       "colorIdx": 2
-    },
-    {
-      "id": "mp57hb47i21z",
-      "date": "2026-05-14",
-      "startH": 17,
-      "startM": 0,
-      "durationMin": 60,
-      "title": "その他　参考サイト探索",
-      "colorIdx": 0
     }
   ],
   "tasks": [
