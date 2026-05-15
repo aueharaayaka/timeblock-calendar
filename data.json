@@ -17629,9 +17629,9 @@
     {
       "id": "mp6a1cue5e80",
       "date": "2026-05-15",
-      "startH": 17,
-      "startM": 30,
-      "durationMin": 90,
+      "startH": 18,
+      "startM": 0,
+      "durationMin": 56,
       "title": "クレセントWEB　リニューアルデザイン",
       "colorIdx": 3
     },
@@ -17642,6 +17642,15 @@
       "startM": 0,
       "durationMin": 30,
       "title": "竹田製函　パンフレット入稿",
+      "colorIdx": 0
+    },
+    {
+      "id": "mp6mp8hi63gp",
+      "date": "2026-05-15",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　改善提案資料確認",
       "colorIdx": 0
     }
   ],
