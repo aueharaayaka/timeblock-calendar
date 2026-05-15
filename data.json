@@ -17631,9 +17631,18 @@
       "date": "2026-05-15",
       "startH": 17,
       "startM": 0,
-      "durationMin": 116,
+      "durationMin": 120,
       "title": "クレセントWEB　リニューアルデザイン",
       "colorIdx": 3
+    },
+    {
+      "id": "mp6j0p8ekcu5",
+      "date": "2026-05-15",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "竹田製函　パンフレット入稿",
+      "colorIdx": 0
     }
   ],
   "tasks": [
