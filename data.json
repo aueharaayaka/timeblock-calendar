@@ -17598,6 +17598,15 @@
       "durationMin": 180,
       "title": "竹田製函　パンフレット修正",
       "colorIdx": 2
+    },
+    {
+      "id": "mp69v413eihu",
+      "date": "2026-05-15",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "竹田製函　パンフレット入稿データ作成",
+      "colorIdx": 0
     }
   ],
   "tasks": [
