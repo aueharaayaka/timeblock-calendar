@@ -17661,6 +17661,15 @@
       "durationMin": 30,
       "title": "ショウエイ保守　みなと",
       "colorIdx": 0
+    },
+    {
+      "id": "mpexd9qx9kgq",
+      "date": "2026-05-21",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "クレセントWEB　リニューアルデザイン",
+      "colorIdx": 3
     }
   ],
   "tasks": [
