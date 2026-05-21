@@ -17697,6 +17697,15 @@
       "durationMin": 60,
       "title": "エベラ　出荷",
       "colorIdx": 0
+    },
+    {
+      "id": "mpf5my0h73mj",
+      "date": "2026-05-21",
+      "startH": 16,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "クレセントWEB　リニューアルデザイン",
+      "colorIdx": 0
     }
   ],
   "tasks": [
