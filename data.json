@@ -17787,6 +17787,15 @@
       "durationMin": 60,
       "title": "クレセント　請求管理シート作成",
       "colorIdx": 0
+    },
+    {
+      "id": "mpgneexoyb0d",
+      "date": "2026-05-22",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "クレセントWEB　リニューアルデザイン",
+      "colorIdx": 0
     }
   ],
   "tasks": [
