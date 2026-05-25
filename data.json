@@ -17832,6 +17832,15 @@
       "durationMin": 120,
       "title": "ショウエイスポーツ　夏短",
       "colorIdx": 0
+    },
+    {
+      "id": "mpkkraalss3j",
+      "date": "2026-05-25",
+      "startH": 13,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "ラクショー　写真選定",
+      "colorIdx": 0
     }
   ],
   "tasks": [
