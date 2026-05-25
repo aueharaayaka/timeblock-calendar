@@ -17827,9 +17827,9 @@
     {
       "id": "mpkizrhgcpcy",
       "date": "2026-05-25",
-      "startH": 17,
+      "startH": 18,
       "startM": 0,
-      "durationMin": 120,
+      "durationMin": 56,
       "title": "ショウエイスポーツ　夏短保守",
       "colorIdx": 0
     },
@@ -17854,10 +17854,19 @@
     {
       "id": "mpkwmb4ekgwo",
       "date": "2026-05-25",
-      "startH": 16,
+      "startH": 17,
       "startM": 0,
       "durationMin": 60,
       "title": "クレセント　糸井さん引継ぎ",
+      "colorIdx": 0
+    },
+    {
+      "id": "mpkwo8v141k8",
+      "date": "2026-05-25",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 56,
+      "title": "ショウエイスポーツ　夏短保守",
       "colorIdx": 0
     }
   ],
