@@ -17805,6 +17805,15 @@
       "durationMin": 30,
       "title": "クレセント　タスク整理",
       "colorIdx": 0
+    },
+    {
+      "id": "mpkiz0whz6cs",
+      "date": "2026-05-25",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 90,
+      "title": "その他　参考サイト探索",
+      "colorIdx": 0
     }
   ],
   "tasks": [
