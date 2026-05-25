@@ -17823,6 +17823,15 @@
       "durationMin": 60,
       "title": "エベラ　出荷",
       "colorIdx": 0
+    },
+    {
+      "id": "mpkizrhgcpcy",
+      "date": "2026-05-25",
+      "startH": 12,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "ショウエイスポーツ　夏短",
+      "colorIdx": 0
     }
   ],
   "tasks": [
