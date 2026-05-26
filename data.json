@@ -17922,6 +17922,15 @@
       "durationMin": 60,
       "title": "エベラ　出荷",
       "colorIdx": 0
+    },
+    {
+      "id": "mpm89fpub4fr",
+      "date": "2026-05-26",
+      "startH": 15,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "ショウエイスポーツ　夏短広告",
+      "colorIdx": 0
     }
   ],
   "tasks": [
