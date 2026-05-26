@@ -17931,6 +17931,15 @@
       "durationMin": 30,
       "title": "クレセント　広告招待",
       "colorIdx": 0
+    },
+    {
+      "id": "mpm95xpx3nn9",
+      "date": "2026-05-26",
+      "startH": 15,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "ショウエイスポーツ　夏短広告",
+      "colorIdx": 1
     }
   ],
   "tasks": [
