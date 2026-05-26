@@ -17904,6 +17904,15 @@
       "durationMin": 30,
       "title": "ショウエイスポーツ　夏短保守",
       "colorIdx": 0
+    },
+    {
+      "id": "mpm36gm9qnu9",
+      "date": "2026-05-26",
+      "startH": 12,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "ショウエイスポーツ　夏短広告",
+      "colorIdx": 1
     }
   ],
   "tasks": [
