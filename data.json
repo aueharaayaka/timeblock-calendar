@@ -18066,6 +18066,15 @@
       "durationMin": 120,
       "title": "クレセント　参考資料探索",
       "colorIdx": 2
+    },
+    {
+      "id": "mpp9szxd8x9b",
+      "date": "2026-05-28",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 120,
+      "title": "クレセント　引継ぎ内容洗い出し",
+      "colorIdx": 0
     }
   ],
   "tasks": [
