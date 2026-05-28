@@ -18034,7 +18034,7 @@
     {
       "id": "mposgy6oqakc",
       "date": "2026-05-28",
-      "startH": 16,
+      "startH": 18,
       "startM": 0,
       "durationMin": 60,
       "title": "クレセント　参考資料探索",
@@ -18043,9 +18043,9 @@
     {
       "id": "mposhobp0arh",
       "date": "2026-05-28",
-      "startH": 17,
+      "startH": 16,
       "startM": 0,
-      "durationMin": 60,
+      "durationMin": 120,
       "title": "クレセント　打ち合わせ",
       "colorIdx": 0
     },
@@ -18063,7 +18063,7 @@
       "date": "2026-05-28",
       "startH": 10,
       "startM": 30,
-      "durationMin": 116,
+      "durationMin": 120,
       "title": "クレセント　参考資料探索",
       "colorIdx": 2
     }
