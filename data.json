@@ -18057,6 +18057,15 @@
       "durationMin": 60,
       "title": "クレセント　クライアントフォルダ移動",
       "colorIdx": 0
+    },
+    {
+      "id": "mpoy62ex0e9j",
+      "date": "2026-05-28",
+      "startH": 11,
+      "startM": 0,
+      "durationMin": 90,
+      "title": "クレセント　参考資料探索",
+      "colorIdx": 2
     }
   ],
   "tasks": [
