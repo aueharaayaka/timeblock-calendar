@@ -18075,6 +18075,15 @@
       "durationMin": 86,
       "title": "クレセント　引継ぎ内容洗い出し",
       "colorIdx": 0
+    },
+    {
+      "id": "mpp9tfubtaog",
+      "date": "2026-05-28",
+      "startH": 17,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "クレセント　タスク整理",
+      "colorIdx": 0
     }
   ],
   "tasks": [
