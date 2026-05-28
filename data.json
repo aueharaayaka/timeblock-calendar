@@ -18012,6 +18012,15 @@
       "durationMin": 60,
       "title": "その他　参考サイト探索",
       "colorIdx": 0
+    },
+    {
+      "id": "mposg4f4jwlp",
+      "date": "2026-05-28",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 240,
+      "title": "クレセント　参考資料探索",
+      "colorIdx": 0
     }
   ],
   "tasks": [
