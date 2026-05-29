@@ -18072,7 +18072,7 @@
       "date": "2026-05-28",
       "startH": 17,
       "startM": 30,
-      "durationMin": 86,
+      "durationMin": 90,
       "title": "クレセント　引継ぎ内容洗い出し",
       "colorIdx": 0
     },
@@ -18083,6 +18083,15 @@
       "startM": 0,
       "durationMin": 30,
       "title": "クレセント　タスク整理",
+      "colorIdx": 0
+    },
+    {
+      "id": "mpq7dzdtzw8c",
+      "date": "2026-05-29",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 150,
+      "title": "クレセント　引継ぎ資料作成",
       "colorIdx": 0
     }
   ],
