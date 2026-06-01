@@ -18120,6 +18120,15 @@
       "durationMin": 60,
       "title": "エベラ　出荷",
       "colorIdx": 0
+    },
+    {
+      "id": "mpui4df9rec1",
+      "date": "2026-06-01",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "西中島グランドハイツ　広告レポート",
+      "colorIdx": 0
     }
   ],
   "tasks": [
