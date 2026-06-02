@@ -18153,7 +18153,7 @@
       "date": "2026-06-01",
       "startH": 12,
       "startM": 0,
-      "durationMin": 116,
+      "durationMin": 120,
       "title": "クレセント　引継ぎ資料作成",
       "colorIdx": 1
     },
@@ -18164,6 +18164,24 @@
       "startM": 0,
       "durationMin": 60,
       "title": "エベラ　出荷",
+      "colorIdx": 0
+    },
+    {
+      "id": "mpumfjemokpa",
+      "date": "2026-06-01",
+      "startH": 11,
+      "startM": 30,
+      "durationMin": 30,
+      "title": "クレセント　竹澤ビル名刺確認用",
+      "colorIdx": 0
+    },
+    {
+      "id": "mpvyvmtxj5kz",
+      "date": "2026-06-02",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 30,
+      "title": "ショウエイ　夏短",
       "colorIdx": 0
     }
   ],
