@@ -18180,16 +18180,16 @@
       "date": "2026-06-02",
       "startH": 10,
       "startM": 0,
-      "durationMin": 60,
+      "durationMin": 30,
       "title": "ショウエイ　夏短広告準備",
       "colorIdx": 0
     },
     {
       "id": "mpvyzzgbg2eh",
       "date": "2026-06-02",
-      "startH": 11,
-      "startM": 0,
-      "durationMin": 30,
+      "startH": 10,
+      "startM": 30,
+      "durationMin": 60,
       "title": "竹澤ビル　名刺データ作成",
       "colorIdx": 0
     },
