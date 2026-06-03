@@ -18237,6 +18237,15 @@
       "durationMin": 60,
       "title": "エベラ　出荷",
       "colorIdx": 0
+    },
+    {
+      "id": "mpxpxs2ev5n2",
+      "date": "2026-06-03",
+      "startH": 16,
+      "startM": 0,
+      "durationMin": 180,
+      "title": "クレセント　引継ぎ資料作成",
+      "colorIdx": 1
     }
   ],
   "tasks": [
