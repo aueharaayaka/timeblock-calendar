@@ -18216,8 +18216,17 @@
       "date": "2026-06-03",
       "startH": 11,
       "startM": 0,
-      "durationMin": 176,
+      "durationMin": 180,
       "title": "クレセント　引継ぎ資料作成",
+      "colorIdx": 0
+    },
+    {
+      "id": "mpxnye00q8fl",
+      "date": "2026-06-03",
+      "startH": 10,
+      "startM": 0,
+      "durationMin": 60,
+      "title": "ラクショー　ロゴ調整",
       "colorIdx": 0
     }
   ],
