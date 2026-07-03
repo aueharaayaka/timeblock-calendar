@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TimeBlock - 週間タイムブロッキングカレンダー。タスク管理・工数管理・当番スケジュールを一元管理。">
+<meta name="description" content="TimeBlock - 週間タイムブロッキングカレンダー。タスク管理・工数管理を一元管理。">
 <meta name="author" content="aueharaayaka">
 <title>TimeBlock | 週間タイムブロッキングカレンダー</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -666,88 +666,12 @@ header {
 }
 .btn-delete:hover { background: #FFF5F3; }
 
-/* ── ALL-DAY ROW ── */
-.allday-row {
-  display: flex;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding-left: 48px;
-  padding-right: 4px; /* スクロールバー幅分オフセット */
-  flex-shrink: 0;
-  min-height: 22px;
-}
-.allday-cell {
-  flex: 1; border-right: 1px solid var(--border-light);
-  padding: 2px 3px; min-height: 22px;
-}
-.allday-cell:last-child { border-right: none; }
-.allday-cell.weekend { background: var(--weekend-bg); }
-.allday-chip {
-  font-size: 9px; font-weight: 600;
-  background: #F0F9FF; color: #0C4A6E;
-  border-left: 2px solid #38BDF8;
-  border-radius: 3px; padding: 1px 5px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  line-height: 1.7; display: block;
-}
-
-@media (max-width: 640px) {
-  .allday-row { padding-left: 36px; }
-}
-
 .hint {
   position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
   font-size: 10px; color: var(--text-muted); background: var(--surface);
   border: 1px solid var(--border); padding: 5px 12px; border-radius: 16px;
   pointer-events: none; letter-spacing: 0.02em; white-space: nowrap;
 }
-
-/* ── SCHEDULE SETTINGS MODAL ── */
-#scheduleModal {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.35);
-  display: none; align-items: center; justify-content: center; z-index: 200;
-}
-#scheduleModal.open { display: flex; }
-.sched-modal {
-  background: var(--surface); border-radius: 14px;
-  padding: 24px; width: 440px; max-width: calc(100vw - 32px);
-  max-height: 90vh; overflow-y: auto;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
-}
-.sched-modal h2 { font-size: 15px; font-weight: 600; margin-bottom: 16px; }
-.sched-section { margin-bottom: 16px; }
-.sched-section label { font-size: 11px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.06em; display: block; margin-bottom: 6px; text-transform: uppercase; }
-.sched-members { display: flex; flex-direction: column; gap: 4px; }
-.sched-member-row { display: flex; align-items: center; gap: 6px; }
-.sched-member-row input[type=text] {
-  flex: 1; font-family: inherit; font-size: 12px;
-  border: 1px solid var(--border); border-radius: 6px;
-  padding: 6px 9px; background: var(--bg); color: var(--text-primary);
-}
-.sched-member-row input[type=text]:focus { outline: none; border-color: var(--accent); }
-.sched-remove-btn {
-  background: none; border: 1px solid var(--border); border-radius: 5px;
-  width: 22px; height: 22px; cursor: pointer; font-size: 13px; line-height: 1;
-  color: var(--text-muted); display: flex; align-items: center; justify-content: center;
-}
-.sched-remove-btn:hover { background: #FFF5F3; color: #E05C40; border-color: #FDDDD7; }
-.sched-add-btn {
-  font-family: inherit; font-size: 11px; background: none;
-  border: 1px dashed var(--border); border-radius: 6px;
-  padding: 5px 10px; cursor: pointer; color: var(--text-muted);
-  width: 100%; margin-top: 4px; transition: background 0.15s;
-}
-.sched-add-btn:hover { background: var(--accent-light); }
-.sched-holidays-wrap { display: flex; flex-direction: column; gap: 4px; }
-.sched-holiday-row { display: flex; align-items: center; gap: 6px; }
-.sched-holiday-row { flex-wrap: nowrap; }
-.sched-holiday-row input[type=date] {
-  flex: 1; min-width: 0; font-family: inherit; font-size: 11px;
-  border: 1px solid var(--border); border-radius: 6px;
-  padding: 5px 6px; background: var(--bg); color: var(--text-primary);
-}
-.sched-holiday-row input[type=date]:focus { outline: none; border-color: var(--accent); }
-.sched-actions { display: flex; gap: 8px; margin-top: 20px; }
 
 /* ── GITHUB SYNC MODAL ── */
 #githubSyncModal {
@@ -789,10 +713,6 @@ header {
     <button id="nextMonth" title="来月" style="font-size:14px;letter-spacing:-1px">»</button>
   </div>
   <div class="header-spacer"></div>
-  <button class="import-btn" id="scheduleSettingsBtn" title="当番スケジュール設定" style="margin-left:6px">
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1a2 2 0 100 4 2 2 0 000-4zM2 9c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-    当番設定
-  </button>
 <button class="import-btn" id="githubSyncBtn" title="GitHub同期設定" style="margin-left:6px">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.43c.85.004 1.7.115 2.5.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
     同期
@@ -816,7 +736,6 @@ header {
     <!-- カレンダーグリッド -->
     <div class="cal-grid-wrap">
       <div class="day-headers" id="dayHeaders"></div>
-      <div class="allday-row" id="alldayRow"></div>
       <div class="grid-scroll" id="gridScroll">
         <div class="grid-inner">
           <div class="time-axis" id="timeAxis"></div>
@@ -926,7 +845,6 @@ const COLORS = [
 // ═══════════════════════════════════════════════
 let blocks  = JSON.parse(localStorage.getItem('tb_blocks')  || '[]');
 let tasks   = JSON.parse(localStorage.getItem('tb_tasks')   || '[]');
-let allDayEvents = JSON.parse(localStorage.getItem('tb_allday') || '[]');
 let weekStart = getWeekStart(new Date());
 
 // GitHub 同期
@@ -1050,38 +968,6 @@ function renderHeader() {
     el.className = 'day-header' + (isWeekend || isHol ? ' weekend' : '') + (isoDate(d)===today ? ' today' : '');
     el.innerHTML = `<span class="day-name">${DAY_NAMES[d.getDay()]}</span><span class="day-num">${d.getDate()}</span>`;
     cont.appendChild(el);
-  }
-  renderAlldayRow();
-}
-
-function renderAlldayRow() {
-  const row = document.getElementById('alldayRow');
-  row.innerHTML = '';
-  const wsStr = isoDate(weekStart);
-  const weStr = isoDate(addDays(weekStart, 6));
-  // 今週分のイベントをdateでインデックス化
-  const byDate = {};
-  allDayEvents.forEach(ev => {
-    if (ev.date >= wsStr && ev.date <= weStr) {
-      if (!byDate[ev.date]) byDate[ev.date] = [];
-      byDate[ev.date].push(ev.summary);
-    }
-  });
-  for (let i = 0; i < 7; i++) {
-    const d = addDays(weekStart, i);
-    const dateStr = isoDate(d);
-    const isWeekend = (i === 0 || i === 6);
-    const isHol = isHoliday(dateStr);
-    const cell = document.createElement('div');
-    cell.className = 'allday-cell' + (isWeekend || isHol ? ' weekend' : '');
-    (byDate[dateStr] || []).forEach(summary => {
-      const chip = document.createElement('div');
-      chip.className = 'allday-chip';
-      chip.textContent = summary;
-      chip.title = summary;
-      cell.appendChild(chip);
-    });
-    row.appendChild(cell);
   }
 }
 
@@ -1937,159 +1823,6 @@ document.getElementById('searchMainClear').addEventListener('click', function() 
 });
 
 
-// ═══════════════════════════════════════════════
-// 当番スケジュール生成
-// ═══════════════════════════════════════════════
-
-// 日本の祝日（2025〜2030）
-// scheduleConfig: { members, ranges: [{from, to}] }
-let scheduleConfig = JSON.parse(localStorage.getItem('tb_schedule_config') || 'null') || {
-  members: ['上原','出倉','糸井','大谷'],
-  ranges: [
-    { from: '2026-08-13', to: '2026-08-16' }, // お盆
-    { from: '2026-12-28', to: '2026-12-31' }, // 年末年始
-  ]
-};
-// 旧形式（holidays配列）からの移行
-if (scheduleConfig.holidays && !scheduleConfig.ranges) {
-  scheduleConfig.ranges = scheduleConfig.holidays.map(d => ({ from: d, to: d }));
-  delete scheduleConfig.holidays;
-}
-if (!scheduleConfig.ranges) scheduleConfig.ranges = [];
-
-function saveScheduleConfig() {
-  localStorage.setItem('tb_schedule_config', JSON.stringify(scheduleConfig));
-}
-
-function expandRanges(ranges) {
-  const set = new Set();
-  ranges.forEach(({ from, to }) => {
-    if (!from || !to) return;
-    const f = new Date(from + 'T00:00:00'), t = new Date(to + 'T00:00:00');
-    for (let d = new Date(f); d <= t; d.setDate(d.getDate() + 1)) {
-      set.add(isoDate(d));
-    }
-  });
-  return set;
-}
-
-function generateSchedule() {
-  const { members, ranges } = scheduleConfig;
-  if (!members.length) return [];
-  const closedDays = expandRanges(ranges || []);
-  // 祝日も追加
-  JP_HOLIDAYS.forEach(h => closedDays.add(h));
-
-  const result = [];
-  // 現在年〜5年先まで生成
-  const now = new Date();
-  const startYear = now.getFullYear();
-  const start = new Date(startYear, 0, 7);
-  const end   = new Date(startYear + 4, 11, 31);
-  let memberIdx = 0;
-  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-    const dow = d.getDay();
-    if (dow !== 1 && dow !== 3 && dow !== 5) continue;
-    const dateStr = isoDate(d);
-    if (closedDays.has(dateStr)) continue;
-    result.push({ date: dateStr, summary: members[memberIdx % members.length] });
-    memberIdx++;
-  }
-  return result;
-}
-
-// ── 設定モーダルUI ──
-function renderSchedMembers() {
-  const wrap = document.getElementById('schedMembers');
-  wrap.innerHTML = '';
-  scheduleConfig.members.forEach((m, i) => {
-    const row = document.createElement('div');
-    row.className = 'sched-member-row';
-    row.innerHTML = `<input type="text" value="${m}" placeholder="担当者名"><button class="sched-remove-btn" title="削除">×</button>`;
-    row.querySelector('input').addEventListener('input', e => { scheduleConfig.members[i] = e.target.value; });
-    row.querySelector('button').addEventListener('click', () => {
-      scheduleConfig.members.splice(i, 1);
-      renderSchedMembers();
-    });
-    wrap.appendChild(row);
-  });
-}
-
-function renderSchedHolidays() {
-  const wrap = document.getElementById('schedHolidays');
-  wrap.innerHTML = '';
-  scheduleConfig.ranges.forEach((r, i) => {
-    const row = document.createElement('div');
-    row.className = 'sched-holiday-row';
-    row.innerHTML = `
-      <input type="date" value="${r.from}" placeholder="開始日">
-      <span style="font-size:11px;color:var(--text-muted);flex-shrink:0">〜</span>
-      <input type="date" value="${r.to}" placeholder="終了日">
-      <button class="sched-remove-btn" title="削除">×</button>`;
-    const inputs = row.querySelectorAll('input');
-    inputs[0].addEventListener('change', e => { scheduleConfig.ranges[i].from = e.target.value; });
-    inputs[1].addEventListener('change', e => { scheduleConfig.ranges[i].to   = e.target.value; });
-    row.querySelector('button').addEventListener('click', () => {
-      scheduleConfig.ranges.splice(i, 1);
-      renderSchedHolidays();
-    });
-    wrap.appendChild(row);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-document.getElementById('scheduleSettingsBtn').addEventListener('click', () => {
-  renderSchedMembers();
-  renderSchedHolidays();
-  document.getElementById('scheduleModal').classList.add('open');
-});
-
-document.getElementById('schedCancelBtn').addEventListener('click', () => {
-  document.getElementById('scheduleModal').classList.remove('open');
-});
-
-document.getElementById('scheduleModal').addEventListener('click', e => {
-  if (e.target === e.currentTarget) document.getElementById('scheduleModal').classList.remove('open');
-});
-
-document.getElementById('schedAddMember').addEventListener('click', () => {
-  scheduleConfig.members.push('');
-  renderSchedMembers();
-  document.getElementById('schedMembers').lastElementChild?.querySelector('input')?.focus();
-});
-
-document.getElementById('schedAddHoliday').addEventListener('click', () => {
-  scheduleConfig.ranges.push({ from: '', to: '' });
-  renderSchedHolidays();
-  document.getElementById('schedHolidays').lastElementChild?.querySelector('input')?.focus();
-});
-
-document.getElementById('schedSaveBtn').addEventListener('click', () => {
-  // 空欄除去・日付ソート
-  scheduleConfig.members = scheduleConfig.members.filter(m => m.trim());
-  scheduleConfig.ranges  = scheduleConfig.ranges.filter(r => r.from && r.to);
-  saveScheduleConfig();
-  allDayEvents = generateSchedule();
-  localStorage.setItem('tb_allday', JSON.stringify(allDayEvents));
-  renderAlldayRow();
-  document.getElementById('scheduleModal').classList.remove('open');
-});
-
-document.getElementById('schedClearBtn').addEventListener('click', () => {
-  if (!confirm('当番スケジュールをすべてリセットしますか？')) return;
-  allDayEvents = [];
-  localStorage.setItem('tb_allday', JSON.stringify(allDayEvents));
-  renderAlldayRow();
-  document.getElementById('scheduleModal').classList.remove('open');
-});
-
-// 初回：scheduleConfigから再生成
-if (scheduleConfig.members && scheduleConfig.members.length) {
-  allDayEvents = generateSchedule();
-  localStorage.setItem('tb_allday', JSON.stringify(allDayEvents));
-}
-}); // end DOMContentLoaded
-
 
 
 // ═══════════════════════════════════════════════
@@ -2143,7 +1876,7 @@ function saveGhConfig() {
 }
 
 function getAppData() {
-  return { blocks, tasks, allDayEvents, scheduleConfig };
+  return { blocks, tasks };
 }
 
 function setAppData(data) {
@@ -2154,14 +1887,6 @@ function setAppData(data) {
   if (Array.isArray(data.tasks)) {
     tasks = data.tasks;
     localStorage.setItem('tb_tasks', JSON.stringify(tasks));
-  }
-  if (Array.isArray(data.allDayEvents)) {
-    allDayEvents = data.allDayEvents;
-    localStorage.setItem('tb_allday', JSON.stringify(allDayEvents));
-  }
-  if (data.scheduleConfig) {
-    scheduleConfig = data.scheduleConfig;
-    saveScheduleConfig();
   }
   renderHeader();
   renderGrid();
@@ -2325,29 +2050,6 @@ setInterval(() => {
     </div>
     <div style="margin-top:10px;text-align:right">
       <button class="btn-secondary" id="ghCancelBtn" style="font-size:11px">閉じる</button>
-    </div>
-  </div>
-</div>
-
-<!-- SCHEDULE SETTINGS MODAL -->
-<div id="scheduleModal">
-  <div class="sched-modal">
-    <h2>当番スケジュール設定</h2>
-    <div class="sched-section">
-      <label>担当者（順番通りに入力）</label>
-      <div class="sched-members" id="schedMembers"></div>
-      <button class="sched-add-btn" id="schedAddMember">＋ 担当者を追加</button>
-    </div>
-    <div class="sched-section">
-      <label>休業期間（祝日は自動除外されます）</label>
-      <div class="sched-holidays-wrap" id="schedHolidays"></div>
-      <button class="sched-add-btn" id="schedAddHoliday">＋ 休業日を追加</button>
-    </div>
-    <div class="sched-actions">
-      <button class="btn-delete" id="schedClearBtn">スケジュールをリセット</button>
-      <div style="flex:1"></div>
-      <button class="btn-secondary" id="schedCancelBtn">キャンセル</button>
-      <button class="btn-primary" id="schedSaveBtn">生成</button>
     </div>
   </div>
 </div>
